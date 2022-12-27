@@ -29,7 +29,7 @@ CREATE TABLE "animal" (
 );
 
 -- Challenge Table
-CREATE TABLE "challege" (
+CREATE TABLE "challenge" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR (255) UNIQUE NOT NULL,
     "description" VARCHAR (255) NOT NULL,
