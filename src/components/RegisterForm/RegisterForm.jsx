@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TextField from '@mui/material/TextField';
+import { useHistory } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -21,13 +25,13 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <h2>Register New User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
-      <div>
+      {/* <div>
         <label htmlFor="username">
           Username:
           <input
@@ -38,8 +42,18 @@ function RegisterForm() {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
-      </div>
+      </div> */}
       <div>
+        <TextField required
+          fullWidth
+          value={username}
+          variant="outlined"
+          label="Username"
+          onChange={(event) => setUsername(event.target.value)}
+          style={{ background: 'white' }}
+        />
+      </div>
+      {/* <div>
         <label htmlFor="password">
           Password:
           <input
@@ -50,10 +64,32 @@ function RegisterForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-      </div>
+      </div> */}
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <TextField required
+          fullWidth
+          value={password}
+          variant="outlined"
+          label="Password"
+          type="password"
+          onChange={(event) => setPassword(event.target.value)}
+          style={{ background: 'white' }}
+        />
       </div>
+      {/* <div>
+        <input className="btn" type="submit" name="submit" value="Register" />
+      </div> */}
+      <div>
+        <Button variant="contained" type="submit" color="success">Register</Button>
+      </div>
+      <center>
+        <button
+          type="button"
+          className="btn btn_asLink"
+          onClick={() => {history.push('/login')}}>
+          Login Page
+        </button>
+      </center>
     </form>
   );
 }
