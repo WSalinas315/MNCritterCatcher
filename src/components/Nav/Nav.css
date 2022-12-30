@@ -34,9 +34,10 @@
   font-size: 15px;
   /* these last two make the logout button in
   the nav bar look like another link */
-  border: none;
+  border: rgb(62, 62, 62) 1px solid;
   cursor: pointer;
   outline: 0;
+  width: 20%;
 }
 
 .navLink:hover {
