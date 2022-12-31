@@ -1,0 +1,10 @@
+.tree {
+  background-image: url(./HomeBackground.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - 77px);
+  max-height: calc(100vh - 77px);
+}
+/* 
+  <a href="https://www.freepik.com/free-vector/nature-scene-with-many-trees-lake_25536643.htm#query=lake%20cartoon&position=0&from_view=keyword">Image by brgfx</a> on Freepik
+*/

@@ -9,7 +9,7 @@ function LoginPage() {
   const logo = require("./CritterCatcherLogo.png");
 
   return (
-    <div>
+    <div className="squirrel">
       {/* App logo */}
       <img src={logo} />
 
