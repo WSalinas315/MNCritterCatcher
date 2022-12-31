@@ -1,0 +1,39 @@
+h1{
+  text-align: center;
+}
+
+h3{
+  margin-left: 15%;
+  margin-right: 15%;
+  font-weight: lighter;
+}
+
+.search-box{
+  padding-top: 15px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.search-body{
+  position: fixed;
+  top: 0;
+}
+
+.filter-select{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.bird-select{
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  justify-content: center;
+}
+
+.mammal-select{
+  display: flex;
+  padding-bottom: 30px;
+  justify-content: center;
+}

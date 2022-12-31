@@ -10,6 +10,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Search from '../Search/Search';
 import './App.css';
 
 function App() {
@@ -48,6 +49,11 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          {/* logged in shows Animal Search else shows LoginPage */}
+          <ProtectedRoute exact path="/search">
+            <Search />
           </ProtectedRoute>
 
           <ProtectedRoute
