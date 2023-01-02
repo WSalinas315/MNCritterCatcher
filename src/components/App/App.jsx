@@ -11,6 +11,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search';
+import SpeciesSelect from '../SpeciesSelect/SpeciesSelect';
 import './App.css';
 
 function App() {
@@ -54,6 +55,16 @@ function App() {
           {/* logged in shows Animal Search else shows LoginPage */}
           <ProtectedRoute exact path="/search">
             <Search />
+          </ProtectedRoute>
+
+          {/* logged in shows Bird Species Search else shows LoginPage */}
+          <ProtectedRoute exact path="/search/birds">
+            <SpeciesSelect type={'Bird'} />
+          </ProtectedRoute>
+
+          {/* logged in shows Mammal Species Search else shows LoginPage */}
+          <ProtectedRoute exact path="/search/mammals">
+            <SpeciesSelect type={'Mammal'} />
           </ProtectedRoute>
 
           <ProtectedRoute

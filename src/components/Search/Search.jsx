@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -12,6 +13,8 @@ export default function Search(props) {
   const store = useSelector((store) => store);
   // Initialize local state
   const [searchQuery, setSearchQuery] = useState('');
+  // Initialize history
+  const history = useHistory();
 
   return (
     <div className='search-body'>
@@ -36,13 +39,15 @@ export default function Search(props) {
         <div className='bird-select'>
           <Button 
             variant="contained"
+            onClick={() => history.push('/search/birds')}
             sx={{width: "125px"}}>
               Birds
             </Button>
         </div>
         <div className='mammal-select'>
           <Button 
-            variant="contained" 
+            variant="contained"
+            onClick={() => history.push('/search/mammals')}
             sx={{width: "125px"}}>
               Mammals
             </Button>
