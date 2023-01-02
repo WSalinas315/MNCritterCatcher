@@ -45,9 +45,15 @@ export default function SpeciesSelect(props) {
     dispatch({type: 'FETCH_SPECIES', payload: event.target.value});
   }
 
+  // function to set species state and dispatch selected species to filterSearch reducer
+  const selectSpecies = (event) => {
+    setSpecies(event.target.value);
+    dispatch({type:'SET_SELECTED', payload: event.target.value});
+  }
 
   return (
     <div className='species-select-body'>
+      {/* Page Title */}
       <h1>Discover {props.type}s</h1>
       <div className='input-fields'>
         
@@ -111,7 +117,8 @@ export default function SpeciesSelect(props) {
               id="species"
               label="Animal Species"
               value={species}
-              onChange={(event) => setSpecies(event.target.value)}
+              // onChange={(event) => setSpecies(event.target.value)}
+              onChange={(event) => selectSpecies(event)}
             >
               {speciesNames.map((name, i) => {
               return(<MenuItem key={i} value={name.name}>{name.name}</MenuItem>)
