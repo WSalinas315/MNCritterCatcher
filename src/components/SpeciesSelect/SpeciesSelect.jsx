@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -15,10 +16,13 @@ export default function SpeciesSelect(props) {
     dispatch({ type: 'FETCH_SUBTYPES', payload: props.type })
   }, []);
 
+  // Initialize history
+  const history = useHistory();
+
   //initialize dispatch
   const dispatch = useDispatch();
 
-  // initialize store
+  // initialize variables from store
   const store = useSelector((store) => store);
   const subtypes = useSelector(store => store.filterSearch.subtypes);
   const families = useSelector(store => store.filterSearch.families);
@@ -119,7 +123,13 @@ export default function SpeciesSelect(props) {
         {/* View Entry button (disabled if form is not completely filled out) */}
         <Box textAlign="center" >
           {species ?
-            <Button variant='contained' sx={{ width: "140px" }}>View Entry</Button>
+            <Button 
+              variant='contained'
+              onClick={() => history.push(`/reference/${species}`)}
+              sx={{ width: "140px" }}
+            >
+              View Entry
+            </Button>
             :
             <Button disabled variant='contained' sx={{ width: "140px" }}>View Entry</Button>
           }
