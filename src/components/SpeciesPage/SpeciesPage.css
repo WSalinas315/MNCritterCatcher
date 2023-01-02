@@ -31,3 +31,11 @@
   flex-direction: column;
   height: 80px; */
 }
+
+.ref-img{
+  padding-top: 0px;
+}
+
+.ref-dimensions, .sighting-btn{
+  text-align: center;
+}

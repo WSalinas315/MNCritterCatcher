@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
+import { Button } from '@mui/material';
 import './SpeciesPage.css';
 
 export default function SpeciesPage(props) {
@@ -19,6 +20,7 @@ export default function SpeciesPage(props) {
 
   // Initialize store data
   const speciesName = useSelector(store => store.filterSearch.selected);
+  const animal = useSelector(store => store.selectedAnimal[0]);
 
   return (
     <div className='ref-body'>
@@ -32,15 +34,31 @@ export default function SpeciesPage(props) {
         {/* Species Name */}
         <div className='ref-page-title'>
           <h1>{speciesName}</h1>
-          <h4>Scientific name</h4>
+          <h4>{animal.scientific_name}</h4>
         </div>
       </div>
+
       {/* Animal Image */}
+      {/* Pizza image cover thingy this! */}
       <div>
-        {/* <img src= */}
+        <img className='ref-img' src={animal.stock_image} />
       </div>
 
-    </div>
+      {/* Animal dimensions */}
+      <div className='ref-dimensions'>
+        <p>Length: {animal.length} {animal.length_uom}</p>
+        {animal.type == 'Bird' ? <p>Wingspan: {animal.wingspan} cm</p> : <></>}
+        <p>Weight: {animal.weight} {animal.weight_uom}</p>
+        <p>Conservation Status: {animal.conservation_status}</p>
+        <p>Markings: {animal.description}</p>
+      </div>
 
+      {/* Add sighting button */}
+      <div className='sighting-btn'>
+        <Button variant='contained'>Add Sighting</Button>
+      </div>
+
+
+    </div>
   );
 }
