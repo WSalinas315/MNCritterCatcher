@@ -9,3 +9,25 @@
   width: 100vw;
   text-align: center;
 }
+
+.top-menu{
+  display: flex;
+}
+
+.menu-icon-container{
+  width: 20%;
+  background-color: #00acb0;
+  margin: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title{
+  width: 60%;
+}
+
+.menu-icon{
+  width: 32px;
+  height: 32px;
+}
