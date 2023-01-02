@@ -10,6 +10,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search';
 import SpeciesSelect from '../SpeciesSelect/SpeciesSelect';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import SpeciesPage from '../SpeciesPage/SpeciesPage';
 import './App.css';
 
 function App() {
@@ -57,6 +58,11 @@ function App() {
           {/* logged in shows Mammal Species Search, else shows LoginPage */}
           <ProtectedRoute exact path="/search/mammals">
             <SpeciesSelect type={'Mammal'} />
+          </ProtectedRoute>
+
+          {/* logged in shows Mammal Species Search, else shows LoginPage */}
+          <ProtectedRoute exact path="/reference/:name">
+            <SpeciesPage />
           </ProtectedRoute>
 
           {/* logged in shows Profile Page, else shows LoginPage */}
