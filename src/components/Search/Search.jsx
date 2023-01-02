@@ -11,7 +11,7 @@ import './Search.css';
 
 export default function Search(props) {
   // Initialize store
-  const store = useSelector((store) => store);
+  // const store = useSelector((store) => store);
   // Initialize local state
   const [searchQuery, setSearchQuery] = useState('');
   // Initialize history
@@ -19,7 +19,9 @@ export default function Search(props) {
 
   return (
     <div className='search-body'>
+      {/* Page Title */}
       <h1>Discover Animals Around You</h1>
+      {/* Search by text */}
       <div className='search-box'>
         <h3>Begin searching with a keyword, e.g., duck</h3>
         <TextField 
@@ -35,8 +37,11 @@ export default function Search(props) {
           onChange={(event) => setSearchQuery(event.target.value)}
         />
       </div>
+
+      {/* Search via filters */}
       <div className='filter-select'>
         <h3>or select an animal type:</h3>
+        {/* Bird search button */}
         <div className='bird-select'>
           <GiDuck className='animal-icon' />
           <Button 
@@ -46,6 +51,7 @@ export default function Search(props) {
               Birds
             </Button>
         </div>
+        {/* Mammal search button */}
         <div className='mammal-select'>
           <GiSquirrel className='animal-icon' />
           <Button 

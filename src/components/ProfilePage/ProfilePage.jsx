@@ -8,9 +8,6 @@ import './ProfilePage.css';
 
 export default function ProfilePage(props) {
 
-  // initialize store
-  const store = useSelector((store) => store);
-
   // initialize dispatch
   const dispatch = useDispatch();
 

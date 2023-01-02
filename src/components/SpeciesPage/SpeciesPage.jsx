@@ -17,7 +17,6 @@ export default function SpeciesPage(props) {
   const dispatch = useDispatch();
 
   // Initialize store data
-  const store = useSelector((store) => store);
   const speciesName = useSelector(store => store.filterSearch.selected);
 
   return (

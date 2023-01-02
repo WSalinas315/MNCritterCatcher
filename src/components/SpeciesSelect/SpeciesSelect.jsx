@@ -23,7 +23,6 @@ export default function SpeciesSelect(props) {
   const dispatch = useDispatch();
 
   // initialize variables from store
-  const store = useSelector((store) => store);
   const subtypes = useSelector(store => store.filterSearch.subtypes);
   const families = useSelector(store => store.filterSearch.families);
   const speciesNames = useSelector(store => store.filterSearch.species);
