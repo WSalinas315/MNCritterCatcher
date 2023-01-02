@@ -1,0 +1,33 @@
+.ref-body{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  /* text-align: center; */
+}
+
+.ref-menu{
+  display: flex;
+  margin-top: 5px;
+}
+
+.ref-menu-icon-container{
+  width: 62px;
+  height: 62px;
+  background-color: #00acb0;
+  margin: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ref-menu-icon{
+  width: 32px;
+  height: 32px;
+}
+
+.ref-page-title{
+  padding-right: 20px;
+  /* display: flex;
+  flex-direction: column;
+  height: 80px; */
+}

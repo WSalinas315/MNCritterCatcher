@@ -41,6 +41,19 @@ router.get('/species/:type', (req, res) => {
   });
 });
 
+// GET for species filter search
+router.get('/selected/:name', (req, res) => {
+  let species = req.params.name;
+  let speciesQuery = `SELECT * FROM "animal" WHERE "name" = $1;`;
+  pool.query(speciesQuery, [species]).then((result) => {
+    console.log('RESULT HERE:', result);
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error getting animal data:', error);
+    res.sendStatus(500);
+  });
+});
+
 /**
  * POST route template
  */

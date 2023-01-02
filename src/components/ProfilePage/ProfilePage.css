@@ -14,6 +14,7 @@
 
 .top-menu{
   display: flex;
+  margin-top: 5px;
 }
 
 .menu-icon-container{
@@ -25,11 +26,12 @@
   justify-content: center;
 }
 
-.page-title{
-  width: 60%;
-}
-
 .menu-icon{
   width: 32px;
   height: 32px;
 }
+
+.page-title{
+  width: 60%;
+}
+
