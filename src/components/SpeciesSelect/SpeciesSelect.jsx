@@ -22,6 +22,7 @@ export default function SpeciesSelect(props) {
   const store = useSelector((store) => store);
   const subtypes = useSelector(store => store.filterSearch.subtypes);
   const families = useSelector(store => store.filterSearch.families);
+  const speciesNames = useSelector(store => store.filterSearch.species);
 
   // initialize local states
   const [subType, setSubType] = useState('');
@@ -34,20 +35,26 @@ export default function SpeciesSelect(props) {
     dispatch({type: 'FETCH_FAMILIES', payload: event.target.value});
   }
 
+  // function to set families state and dispatch fetch species
+  const getSpecies = (event) => {
+    setFamily(event.target.value);
+    dispatch({type: 'FETCH_SPECIES', payload: event.target.value});
+  }
+
 
   return (
     <div className='species-select-body'>
       <h1>Discover {props.type}s</h1>
       <div className='input-fields'>
+        
+        {/* Animal Subtype Drop Down */}
         <FormControl fullWidth sx={{ marginTop: "20px" }}>
-          {/* Animal Subtype Drop Down */}
           <InputLabel id="subtype">Animal Subtype*</InputLabel>
           <Select
             required
             id="subtype"
             label="Animal Subtype"
             value={subType}
-            // onChange={(event) => setSubType(event.target.value)}
             onChange={(event) => getFamilies(event)}
           >
             {subtypes.map((subtype, i) => {
@@ -66,17 +73,15 @@ export default function SpeciesSelect(props) {
               id="family"
               label="Animal Family"
               value={family}
-              // onChange={(event) => setFamily(event.target.value)}
-            >
-              {/* <MenuItem value={2}>Two</MenuItem> */}
-            </Select>
+            ></Select>
             :
             <Select
               required
               id="family"
               label="Animal Family"
               value={family}
-              onChange={(event) => setFamily(event.target.value)}
+              // onChange={(event) => setFamily(event.target.value)}
+              onChange={(event) => getSpecies(event)}
             >
               {families.map((family, i) => {
               return(<MenuItem key={i} value={family.family}>{family.family}</MenuItem>)
@@ -95,10 +100,7 @@ export default function SpeciesSelect(props) {
               id="species"
               label="Animal Species"
               value={species}
-              onChange={(event) => setSpecies(event.target.value)}
-            >
-              <MenuItem value={3}>Three</MenuItem>
-            </Select>
+            ></Select>
             :
             <Select
               required
@@ -107,7 +109,9 @@ export default function SpeciesSelect(props) {
               value={species}
               onChange={(event) => setSpecies(event.target.value)}
             >
-              <MenuItem value={3}>Three</MenuItem>
+              {speciesNames.map((name, i) => {
+              return(<MenuItem key={i} value={name.name}>{name.name}</MenuItem>)
+            })}
             </Select>
           }
         </FormControl>

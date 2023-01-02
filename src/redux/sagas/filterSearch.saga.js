@@ -25,7 +25,7 @@ function* fetchFamilies(action) {
 function* fetchSpecies(action) {
   try {
     const species = yield axios.get(`/api/search/species/${action.payload}`);
-    yield put({ type: 'SET_SPECIES', payload: species });
+    yield put({ type: 'SET_SPECIES', payload: species.data });
   } catch (error) {
     console.log('GET species error:', error);
   }
