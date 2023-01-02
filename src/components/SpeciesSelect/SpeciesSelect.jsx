@@ -21,11 +21,18 @@ export default function SpeciesSelect(props) {
   // initialize store
   const store = useSelector((store) => store);
   const subtypes = useSelector(store => store.filterSearch.subtypes);
+  const families = useSelector(store => store.filterSearch.families);
 
   // initialize local states
   const [subType, setSubType] = useState('');
   const [family, setFamily] = useState('');
   const [species, setSpecies] = useState('');
+
+  // function to set subType state and dispatch fetch families
+  const getFamilies = (event) => {
+    setSubType(event.target.value);
+    dispatch({type: 'FETCH_FAMILIES', payload: event.target.value});
+  }
 
 
   return (
@@ -34,13 +41,14 @@ export default function SpeciesSelect(props) {
       <div className='input-fields'>
         <FormControl fullWidth sx={{ marginTop: "20px" }}>
           {/* Animal Subtype Drop Down */}
-          <InputLabel id="subtype">Animal Subtype</InputLabel>
+          <InputLabel id="subtype">Animal Subtype*</InputLabel>
           <Select
             required
             id="subtype"
             label="Animal Subtype"
             value={subType}
-            onChange={(event) => setSubType(event.target.value)}
+            // onChange={(event) => setSubType(event.target.value)}
+            onChange={(event) => getFamilies(event)}
           >
             {subtypes.map((subtype, i) => {
               return(<MenuItem key={i} value={subtype.subtype}>{subtype.subtype}</MenuItem>)
@@ -50,7 +58,7 @@ export default function SpeciesSelect(props) {
 
         {/* Animal Family Drop Down (disabled if Subtype is not selected) */}
         <FormControl fullWidth sx={{ marginTop: "30px" }}>
-          <InputLabel id="family">Animal Family</InputLabel>
+          <InputLabel id="family">Animal Family*</InputLabel>
           {subType == '' ?
             <Select
               disabled
@@ -58,9 +66,9 @@ export default function SpeciesSelect(props) {
               id="family"
               label="Animal Family"
               value={family}
-              onChange={(event) => setFamily(event.target.value)}
+              // onChange={(event) => setFamily(event.target.value)}
             >
-              <MenuItem value={2}>Two</MenuItem>
+              {/* <MenuItem value={2}>Two</MenuItem> */}
             </Select>
             :
             <Select
@@ -70,14 +78,16 @@ export default function SpeciesSelect(props) {
               value={family}
               onChange={(event) => setFamily(event.target.value)}
             >
-              <MenuItem value={2}>Two</MenuItem>
+              {families.map((family, i) => {
+              return(<MenuItem key={i} value={family.family}>{family.family}</MenuItem>)
+            })}
             </Select>
           }
         </FormControl>
 
         {/* Animal Species Drop Down (disabled if Family is not selected) */}
         <FormControl fullWidth sx={{ marginTop: "30px", marginBottom: "30px" }}>
-          <InputLabel id="species">Animal Species</InputLabel>
+          <InputLabel id="species">Animal Species*</InputLabel>
           {family == '' ?
             <Select
               disabled

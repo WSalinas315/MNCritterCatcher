@@ -5,7 +5,6 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import Home from '../Home/Home';
-import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search';
