@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import {HashRouter as Router,Redirect,Route,Switch,} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -12,6 +11,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search';
 import SpeciesSelect from '../SpeciesSelect/SpeciesSelect';
+import ProfilePage from '../ProfilePage/ProfilePage';
 import './App.css';
 
 function App() {
@@ -52,19 +52,24 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          {/* logged in shows Animal Search else shows LoginPage */}
+          {/* logged in shows Animal Search, else shows LoginPage */}
           <ProtectedRoute exact path="/search">
             <Search />
           </ProtectedRoute>
 
-          {/* logged in shows Bird Species Search else shows LoginPage */}
+          {/* logged in shows Bird Species Search, else shows LoginPage */}
           <ProtectedRoute exact path="/search/birds">
             <SpeciesSelect type={'Bird'} />
           </ProtectedRoute>
 
-          {/* logged in shows Mammal Species Search else shows LoginPage */}
+          {/* logged in shows Mammal Species Search, else shows LoginPage */}
           <ProtectedRoute exact path="/search/mammals">
             <SpeciesSelect type={'Mammal'} />
+          </ProtectedRoute>
+
+          {/* logged in shows Profile Page, else shows LoginPage */}
+          <ProtectedRoute exact path="/profile">
+            <ProfilePage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -80,8 +85,7 @@ function App() {
             path="/login"
           >
             {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
+              // If the user is already logged in, redirect to the /user page
               <Redirect to="/user" />
               :
               // Otherwise, show the login page
@@ -94,8 +98,7 @@ function App() {
             path="/registration"
           >
             {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
+              // If the user is already logged in, redirect them to the /user page
               <Redirect to="/user" />
               :
               // Otherwise, show the registration page
@@ -108,8 +111,7 @@ function App() {
             path="/home"
           >
             {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
+              // If the user is already logged in, redirect them to the /user page
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page

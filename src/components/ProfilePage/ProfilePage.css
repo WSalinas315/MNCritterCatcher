@@ -1,0 +1,11 @@
+.profileAvatar{
+  width: 250px;
+  height: 250px;
+}
+
+.profile-page{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  text-align: center;
+}
