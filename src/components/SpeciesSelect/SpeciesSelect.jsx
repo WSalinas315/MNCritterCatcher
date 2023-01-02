@@ -12,7 +12,7 @@ export default function SpeciesSelect(props) {
 
   // fetches subtypes from database
   useEffect(() => {
-    dispatch({ type: 'FETCH_SUB_TYPES' })
+    dispatch({ type: 'FETCH_SUBTYPES', payload: props.type })
   }, []);
 
   //initialize dispatch
@@ -20,6 +20,7 @@ export default function SpeciesSelect(props) {
 
   // initialize store
   const store = useSelector((store) => store);
+  const subtypes = useSelector(store => store.filterSearch.subtypes);
 
   // initialize local states
   const [subType, setSubType] = useState('');
@@ -32,20 +33,22 @@ export default function SpeciesSelect(props) {
       <h1>Discover {props.type}s</h1>
       <div className='input-fields'>
         <FormControl fullWidth sx={{ marginTop: "20px" }}>
-          {/* Animal Sub-Type Drop Down */}
-          <InputLabel id="sub-type">Animal Sub-Type</InputLabel>
+          {/* Animal Subtype Drop Down */}
+          <InputLabel id="subtype">Animal Subtype</InputLabel>
           <Select
             required
-            id="sub-type"
-            label="Animal Sub-Type"
+            id="subtype"
+            label="Animal Subtype"
             value={subType}
             onChange={(event) => setSubType(event.target.value)}
           >
-            <MenuItem value={1}>One</MenuItem>
+            {subtypes.map((subtype, i) => {
+              return(<MenuItem key={i} value={subtype.subtype}>{subtype.subtype}</MenuItem>)
+            })}
           </Select>
         </FormControl>
 
-        {/* Animal Family Drop Down (disabled if Sub-Type is not selected) */}
+        {/* Animal Family Drop Down (disabled if Subtype is not selected) */}
         <FormControl fullWidth sx={{ marginTop: "30px" }}>
           <InputLabel id="family">Animal Family</InputLabel>
           {subType == '' ?
@@ -101,7 +104,7 @@ export default function SpeciesSelect(props) {
 
         {/* View Entry button (disabled if form is not completely filled out) */}
         <Box textAlign="center" >
-          {species ? 
+          {species ?
             <Button variant='contained' sx={{ width: "140px" }}>View Entry</Button>
             :
             <Button disabled variant='contained' sx={{ width: "140px" }}>View Entry</Button>
