@@ -5,6 +5,7 @@ import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Button } from '@mui/material';
+import {GiDuck, GiSquirrel} from 'react-icons/gi';
 import './Search.css';
 
 
@@ -37,6 +38,7 @@ export default function Search(props) {
       <div className='filter-select'>
         <h3>or select an animal type:</h3>
         <div className='bird-select'>
+          <GiDuck className='animal-icon' />
           <Button 
             variant="contained"
             onClick={() => history.push('/search/birds')}
@@ -45,6 +47,7 @@ export default function Search(props) {
             </Button>
         </div>
         <div className='mammal-select'>
+          <GiSquirrel className='animal-icon' />
           <Button 
             variant="contained"
             onClick={() => history.push('/search/mammals')}
