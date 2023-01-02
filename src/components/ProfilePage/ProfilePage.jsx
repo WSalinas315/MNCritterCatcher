@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {BsPersonCircle} from 'react-icons/bs';
-import EditIcon from '@mui/icons-material/Edit';
 import {FiEdit, FiInfo} from 'react-icons/fi';
-import InfoIcon from '@mui/icons-material/Info';
-import Button from '@mui/material/Button';
 import './ProfilePage.css';
 
 
@@ -50,7 +47,7 @@ export default function ProfilePage(props) {
 
       {/* Profile Picture / Generic Icon */}
       <div className='avatar'>
-        <BsPersonCircle className='profileAvatar'/>
+        {user.profile_image ? <img className='profileAvatar' src={user.profile_image} /> : <BsPersonCircle className='profileAvatar' />}
       </div>
 
       {/* Username */}
