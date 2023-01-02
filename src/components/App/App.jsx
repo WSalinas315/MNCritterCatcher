@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import Home from '../Home/Home';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -42,8 +41,8 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           {/* logged in shows UserPage else shows LoginPage */}
-          <ProtectedRoute exact path="/user">
-            <UserPage />
+          <ProtectedRoute exact path="/home">
+            <Home />
           </ProtectedRoute>
 
           {/* logged in shows Animal Search, else shows LoginPage */}
@@ -67,23 +66,23 @@ function App() {
           </ProtectedRoute>
 
           {/* logged in shows InfoPage else shows LoginPage */}
-          <ProtectedRoute exact path="/info">
+          {/* <ProtectedRoute exact path="/info">
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           {/* If the user is already logged in, redirect to the /user page, Otherwise, show the login page */}
           <Route exact path="/login">
-            {user.id ? <Redirect to="/user" /> : <LoginPage />}
+            {user.id ? <Redirect to="/home" /> : <LoginPage />}
           </Route>
 
           {/* If the user is already logged in, redirect them to the /user page, Otherwise, show the registration page */}
           <Route exact path="/registration">
-            {user.id ? <Redirect to="/user" /> : <RegisterPage />}
+            {user.id ? <Redirect to="/home" /> : <RegisterPage />}
           </Route>
 
           {/* If the user is already logged in, redirect them to the /user page, Otherwise, show the Landing page */}
           <Route exact path="/home">
-            {user.id ? <Redirect to="/user" /> : <LandingPage />}
+            {user.id ? <Redirect to="/home" /> : <LoginPage />}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

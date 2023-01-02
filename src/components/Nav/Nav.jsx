@@ -34,7 +34,7 @@ function Nav() {
             <Link className="navLink" to="/sightings">
               <DynamicFeedIcon />
             </Link>
-            <Link className="navLink" to="/user">
+            <Link className="navLink" to="/home">
               <HomeIcon />
             </Link>
             <Link className="navLink" to="/challenges">
@@ -43,11 +43,6 @@ function Nav() {
             <Link className="navLink" to="/profile">
               <AccountBoxIcon />
             </Link>
-            {/* <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <LogOutButton className="navLink" /> */}
           </>
         )}
 
