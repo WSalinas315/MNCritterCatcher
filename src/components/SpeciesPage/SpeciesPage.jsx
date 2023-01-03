@@ -20,7 +20,7 @@ export default function SpeciesPage(props) {
 
   // Initialize store data
   const speciesName = useSelector(store => store.filterSearch.selected);
-  const animal = useSelector(store => store.selectedAnimal[0]);
+  const animal = useSelector(store => store.selectedAnimal);
 
   return (
     <div className='ref-body'>
