@@ -11,6 +11,7 @@ import Search from '../Search/Search';
 import SpeciesSelect from '../SpeciesSelect/SpeciesSelect';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import SpeciesPage from '../SpeciesPage/SpeciesPage';
+import Sightings from '../Sightings/Sightings';
 import './App.css';
 
 function App() {
@@ -60,9 +61,14 @@ function App() {
             <SpeciesSelect type={'Mammal'} />
           </ProtectedRoute>
 
-          {/* logged in shows Mammal Species Search, else shows LoginPage */}
+          {/* logged in shows Animal Reference Card, else shows LoginPage */}
           <ProtectedRoute exact path="/reference/:name">
             <SpeciesPage />
+          </ProtectedRoute>
+
+          {/* logged in shows Sightings Feed, else shows LoginPage */}
+          <ProtectedRoute exact path="/sightings">
+            <Sightings />
           </ProtectedRoute>
 
           {/* logged in shows Profile Page, else shows LoginPage */}
