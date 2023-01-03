@@ -13,6 +13,8 @@ export default function Sightings(props) {
   // Initialize local state
   const [sightingFilter, setSightingFilter] = useState('');
 
+  // Initialize history
+  const history = useHistory();
 
   return (
     <div className='sightings-body'>
