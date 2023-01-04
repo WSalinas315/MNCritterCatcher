@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 
-const filterSearch = (state = {subtypes:[], families:[], species: [], selected: ''}, action) => {
+const filterSearch = (state = {type: '', subtypes:[], families:[], species: [], selected: ''}, action) => {
   switch (action.type) {
     // Clear all arrays within state object
     case 'CLEAR_FILTER_SEARCH':
-      return {subtypes:[], families:[], species: [], selected: ''};
+      return {type: '', subtypes:[], families:[], species: [], selected: ''};
+    // Set Type and clear subtypes/families/species
+    case 'SET_TYPE':
+      return {subtypes: action.payload, subtypes: [], families: [], species: [], selected: ''};
     // Set Subtypes and clear families/species
     case 'SET_SUBTYPES':
       return {subtypes: action.payload, families: [], species: [], selected: ''};
