@@ -26,6 +26,12 @@ export default function Search(props) {
     history.push('/search/birds');
   }
 
+    // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
+    const selectMammals = () => {
+      dispatch({type:'SET_TYPE', payload: 'Mammal'});
+      history.push('/search/mammals');
+    }
+
   return (
     <div className='search-body'>
       {/* Page Title */}
@@ -66,7 +72,8 @@ export default function Search(props) {
           <GiSquirrel className='animal-icon' />
           <Button 
             variant="contained"
-            onClick={() => history.push('/search/mammals')}
+            //onClick={() => history.push('/search/mammals')}
+            onClick={() => selectMammals()}
             sx={{width: "125px"}}>
               Mammals
             </Button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import HomeIcon from '@mui/icons-material/Home';
@@ -9,7 +9,17 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 function Nav() {
+
+  // Initialize user from store
   const user = useSelector((store) => store.user);
+
+  // Initialize dispatch
+  const dispatch = useDispatch();
+
+  // dispatch to clear filter search if Nav bar is clicked from the SpeciesPage
+  const clearFilterSearch = () => {
+    dispatch({type:'CLEAR_FILTER_SEARCH'});
+  }
 
   return (
     <div className="nav">
@@ -17,19 +27,19 @@ function Nav() {
         {user.id && (
           <>
             <Link className="navLink" to="/search">
-              <SearchIcon />
+              <SearchIcon onClick={() => clearFilterSearch()} />
             </Link>
             <Link className="navLink" to="/sightings">
-              <DynamicFeedIcon />
+              <DynamicFeedIcon onClick={() => clearFilterSearch()} />
             </Link>
             <Link className="navLink" to="/home">
-              <HomeIcon />
+              <HomeIcon onClick={() => clearFilterSearch()} />
             </Link>
             <Link className="navLink" to="/challenges">
-              <EmojiEventsIcon />
+              <EmojiEventsIcon onClick={() => clearFilterSearch()} />
             </Link>
             <Link className="navLink" to="/profile">
-              <AccountBoxIcon />
+              <AccountBoxIcon onClick={() => clearFilterSearch()} />
             </Link>
           </>
         )}
