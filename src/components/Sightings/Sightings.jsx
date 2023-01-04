@@ -40,7 +40,7 @@ export default function Sightings(props) {
           />
         </div>
         {/* Add sighting button */}
-        <div className='add-icon-container' onClick={() => history.goBack()}>
+        <div className='add-icon-container' onClick={() => history.push('/sightings/add')}>
           <FiPlus className='sightings-add-icon' />
         </div>
       </div>
