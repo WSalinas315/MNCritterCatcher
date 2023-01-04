@@ -10,7 +10,7 @@ const filterSearch = (state = {type: '', subtypes:[], families:[], species: [], 
       return {type: action.payload, subtypes: [], families: [], species: [], selected: ''};
     // Set Subtypes and clear families/species
     case 'SET_SUBTYPES':
-      return {subtypes: action.payload, families: [], species: [], selected: ''};
+      return {...state, subtypes: action.payload, families: [], species: [], selected: ''};
     // Set Famlies and clear species
     case 'SET_FAMILIES':
       return {...state, families: action.payload, species: [], selected: ''};

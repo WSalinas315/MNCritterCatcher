@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,12 +10,21 @@ import './Search.css';
 
 
 export default function Search(props) {
-  // Initialize store
-  // const store = useSelector((store) => store);
+
   // Initialize local state
   const [searchQuery, setSearchQuery] = useState('');
+
   // Initialize history
   const history = useHistory();
+
+  // Initialize dispatch
+  const dispatch = useDispatch();
+
+  // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
+  const selectBirds = () => {
+    dispatch({type:'SET_TYPE', payload: 'Bird'});
+    history.push('/search/birds');
+  }
 
   return (
     <div className='search-body'>
@@ -46,7 +55,8 @@ export default function Search(props) {
           <GiDuck className='animal-icon' />
           <Button 
             variant="contained"
-            onClick={() => history.push('/search/birds')}
+            // onClick={() => history.push('/search/birds')}
+            onClick={() => selectBirds()}
             sx={{width: "125px"}}>
               Birds
             </Button>
