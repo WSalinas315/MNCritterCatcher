@@ -55,7 +55,7 @@ export default function SpeciesPage(props) {
 
       {/* Add sighting button */}
       <div className='sighting-btn'>
-        <Button variant='contained'>Add Sighting</Button>
+        <Button variant='contained' onClick={() => history.push('/sightings/add')}>Add Sighting</Button>
       </div>
 
 

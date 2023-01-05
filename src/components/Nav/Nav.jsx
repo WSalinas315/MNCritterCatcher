@@ -19,6 +19,7 @@ function Nav() {
   // dispatch to clear filter search if Nav bar is clicked from the SpeciesPage
   const clearFilterSearch = () => {
     dispatch({type:'CLEAR_FILTER_SEARCH'});
+    dispatch({type:'CLEAR_REF_ANIMAL'});
   }
 
   return (

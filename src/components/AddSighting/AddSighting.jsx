@@ -18,9 +18,11 @@ export default function AddSighting(props) {
   const dispatch = useDispatch();
 
   // initialize variables from store
-  // const subtypes = useSelector(store => store.filterSearch.subtypes);
-  // const families = useSelector(store => store.filterSearch.families);
-  // const speciesNames = useSelector(store => store.filterSearch.species);
+  const animalType = useSelector(store => store.filterSearch.type);
+  const subtypes = useSelector(store => store.filterSearch.subtypes);
+  const families = useSelector(store => store.filterSearch.families);
+  const speciesNames = useSelector(store => store.filterSearch.species);
+  const selected = useSelector(store => store.selectedAnimal);
 
   // Initialize local state
   const [caption, setCaption] = useState('');
@@ -86,107 +88,155 @@ export default function AddSighting(props) {
         {/* Image Upload */}
         <h3>Image Upload Here</h3>
 
-        {/* Animal Type Drop Down */}
+        {/* Animal Type Drop Down 
+            If selectedAnimal is populated, the field auto-populates and is disabled
+            Otherwise normal search functionality exists */}
         <FormControl fullWidth >
           <InputLabel id="add-type">Animal Type*</InputLabel>
-          <Select
-            required
-            id="add-type"
-            label="Animal Type"
-            value={type}
-            onChange={(event) => getSubtypes(event)}
-          >
-            <MenuItem value={'Bird'}>Bird</MenuItem>
-            <MenuItem value={'Mammal'}>Mammal</MenuItem>
-          </Select>
+          {selected.name ?
+            <Select
+              disabled
+              id="add-type"
+              label="Animal Type"
+              defaultValue={selected.type}
+            >
+              <MenuItem value={selected.type}>{selected.type}</MenuItem>
+            </Select>
+            :
+            <Select
+              required
+              id="add-type"
+              label="Animal Type"
+              value={type}
+              onChange={(event) => getSubtypes(event)}
+            >
+              <MenuItem value={'Bird'}>Bird</MenuItem>
+              <MenuItem value={'Mammal'}>Mammal</MenuItem>
+            </Select>}
         </FormControl>
 
-        {/* Animal Subtype Drop Down */}
+        {/* Animal Subtype Drop Down 
+            If selectedAnimal is populated, the field auto-populates and is disabled
+            Otherwise normal search functionality exists */}
         <FormControl fullWidth>
           <InputLabel id="add-subtype">Animal Subtype*</InputLabel>
-          {type == '' ?
+          {selected.name ?
             <Select
               disabled
-              required
               id="add-subtype"
               label="Animal Subtype"
-              value={subType}
-            ></Select>
-            :
-            <Select
-              required
-              id="add-subtype"
-              label="Animal Subtype"
-              value={subType}
-              onChange={(event) => getFamilies(event)}
+              defaultValue={selected.subtype}
             >
-              {/* {subtypes.map((subtype, i) => {
+              <MenuItem value={selected.subtype}>{selected.subtype}</MenuItem>
+            </Select>
+            :
+            type == '' ?
+              <Select
+                disabled
+                required
+                id="add-subtype"
+                label="Animal Subtype"
+                value={subType}
+              ></Select>
+              :
+              <Select
+                required
+                id="add-subtype"
+                label="Animal Subtype"
+                value={subType}
+                onChange={(event) => getFamilies(event)}
+              >
+                {/* {subtypes.map((subtype, i) => {
               return(<MenuItem key={i} value={subtype.subtype}>{subtype.subtype}</MenuItem>)
             })} */}
-            </Select>
+              </Select>
           }
         </FormControl>
 
-        {/* Animal Family Drop Down (disabled if Subtype is not selected) */}
+        {/* Animal Family Drop Down (disabled if Subtype is not selected) 
+            If selectedAnimal is populated, the field auto-populates and is disabled
+            Otherwise normal search functionality exists */}
         <FormControl fullWidth>
           <InputLabel id="add-family">Animal Family*</InputLabel>
-          {subType == '' ?
+          {selected.name ?
             <Select
               disabled
-              required
               id="add-family"
               label="Animal Family"
-              value={family}
-            ></Select>
-            :
-            <Select
-              required
-              id="add-family"
-              label="Animal Family"
-              value={family}
-              onChange={(event) => getSpecies(event)}
+              defaultValue={selected.family}
             >
-              {/* {families.map((family, i) => {
+              <MenuItem value={selected.family}>{selected.family}</MenuItem>
+            </Select>
+            :
+            subType == '' ?
+              <Select
+                disabled
+                required
+                id="add-family"
+                label="Animal Family"
+                value={family}
+              ></Select>
+              :
+              <Select
+                required
+                id="add-family"
+                label="Animal Family"
+                value={family}
+                onChange={(event) => getSpecies(event)}
+              >
+                {/* {families.map((family, i) => {
               return(<MenuItem key={i} value={family.family}>{family.family}</MenuItem>)
             })} */}
-            </Select>
+              </Select>
           }
         </FormControl>
 
-        {/* Animal Species Drop Down (disabled if Family is not selected) */}
+        {/* Animal Species Drop Down (disabled if Family is not selected) 
+            If selectedAnimal is populated, the field auto-populates and is disabled
+            Otherwise normal search functionality exists */}
         <FormControl fullWidth>
           <InputLabel id="add-species">Animal Species*</InputLabel>
-          {family == '' ?
+          {selected.name ?
             <Select
               disabled
-              required
               id="add-species"
               label="Animal Species"
-              value={species}
-            ></Select>
-            :
-            <Select
-              required
-              id="add-species"
-              label="Animal Species"
-              value={species}
-              // onChange={(event) => setSpecies(event.target.value)}
-              onChange={(event) => selectSpecies(event)}
+              defaultValue={selected.name}
             >
-              {/* {speciesNames.map((name, i) => {
+              <MenuItem value={selected.name}>{selected.name}</MenuItem>
+            </Select>
+            :
+            family == '' ?
+              <Select
+                disabled
+                required
+                id="add-species"
+                label="Animal Species"
+                value={species}
+              ></Select>
+              :
+              <Select
+                required
+                id="add-species"
+                label="Animal Species"
+                value={species}
+                // onChange={(event) => setSpecies(event.target.value)}
+                onChange={(event) => selectSpecies(event)}
+              >
+                {/* {speciesNames.map((name, i) => {
               return(<MenuItem key={i} value={name.name}>{name.name}</MenuItem>)
             })} */}
-            </Select>
+              </Select>
           }
         </FormControl>
-        
+
         {/* GeoLocation Tagging */}
         <h3>GeoLocation Select Here</h3>
 
         {/* View Entry button (disabled if form is not completely filled out) */}
         <Box textAlign="center" >
           {species ?
-            <Button 
+            <Button
               variant='contained'
               // onClick={() => history.push(`/reference/${species}`)}
               sx={{ width: "140px" }}
