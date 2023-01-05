@@ -2,8 +2,9 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/* GET all sightings from the database */
+/* GET all sightings for a user from the database */
 router.get('/:id', (req, res) => {
+  console.log('In server router GET');
   let userID = req.params.id;
   let sightingsQuery = `SELECT * FROM "sightings" WHERE "user_id" = $1;`;
   pool.query(sightingsQuery, [userID]).then((result) => {
@@ -16,6 +17,7 @@ router.get('/:id', (req, res) => {
 
 /* POST a new sighting to the database */
 router.post('/', (req, res) => {
+  console.log('In server router POST');
   let sighting = req.body;
   console.log('Sighting info submitted to server:', sighting);
   let sightingQuery = `INSERT INTO "sighting" ("user_id", "animal_id", "date", "location", "caption", "image")
@@ -27,5 +29,24 @@ router.post('/', (req, res) => {
     res.sendStatus(500);
   });
 });
+
+/* DELETE a sighting by ID */
+router.delete('/:id', (req, res) => {
+  console.log('In server router DELETE');
+  let sightingID = req.params.id;
+  let deleteQuery = `DELETE FROM "sightings" WHERE "id" = $1;`;
+  pool.query(deleteQuery, [sightingID]).then((result)=> {
+    res.sendStatus(200);
+  }). catch((error) => {
+    console.log('Error deleting sighting', sightingID, ':', error);
+    res.sendStatus(500);
+  });
+});
+
+
+
+/* DON'T FORGET TO RUN SIGHTING COUNTS */
+
+
 
 module.exports = router;
