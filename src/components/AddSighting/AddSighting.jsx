@@ -235,13 +235,13 @@ export default function AddSighting(props) {
 
         {/* View Entry button (disabled if form is not completely filled out) */}
         <Box textAlign="center" >
-          {species ?
+          {selected.name ?
             <Button
               variant='contained'
               // onClick={() => history.push(`/reference/${species}`)}
               sx={{ width: "140px" }}
             >
-              View Entry
+              Submit
             </Button>
             :
             <Button disabled variant='contained' sx={{ width: "140px" }}>Submit</Button>
