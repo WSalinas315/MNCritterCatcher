@@ -58,8 +58,19 @@ router.put('/:id', (req, res) => {
   });
 });
 
-/* DON'T FORGET TO RUN SIGHTING COUNTS */
-
+/* GET a count of all sightings for a user from the database */
+router.get('/count/:id', (req, res) => {
+  console.log('In sighting router count GET');
+  let userID = req.params.id;
+  console.log('User ID in count GET is:', userID);
+  let sightingsQuery = `SELECT COUNT(*) AS "sighting_count" FROM "sighting" WHERE "user_id" = $1;`;
+  pool.query(sightingsQuery, [userID]).then((result) => {
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error retrieving sightings for user', userID, ':', error);
+    res.sendStatus(500);
+  });
+});
 
 
 module.exports = router;

@@ -19,9 +19,9 @@ export default function ProfilePage(props) {
   // const sightings = useSelector((store) => store.sightings);
 
   // fetches subtypes from database
-  useEffect(() => {
-    dispatch({ type: 'FETCH_SIGHTINGS'})
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_SIGHTINGS'})
+  // }, []);
 
   return (
     <div className='profile-page'>
