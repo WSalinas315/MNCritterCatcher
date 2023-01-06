@@ -7,7 +7,7 @@ import './DetailedSighting.css';
 export default function DetailedSighting(props) {
 
   // Initialize sightings data from store
-  const sightings = useSelector(store => store.sighting);
+  const sighting = useSelector(store => store.detailed);
   const user = useSelector(store => store.user);
 
   // Initialize dispatch
@@ -17,16 +17,24 @@ export default function DetailedSighting(props) {
   const history = useHistory();
 
   // Initialize variable with sighting ID
-  const sightingID = useParams();
+  // const sightingID = useParams();
 
 
 
   return (
     <div>
       <div className='top-thingy'>
-        <Button variant='contained'>Delete</Button>
+        <Button variant='contained' sx={{margin: "20px"}}>Delete</Button>
+        <Button variant='contained' sx={{margin: "20px"}}>Edit</Button>
+        <Button variant='contained' sx={{margin: "20px"}} onClick={() => history.goBack()}>Back</Button>
       </div>
-      {/* <div><h1>{sightings}</h1></div> */}
+      <div>
+        <h1>Animal ID: {sighting.animal_id}</h1>
+        <h3>Date Seen: {sighting.date}</h3>
+        <div className='dummy-image'> <p2>Image Here</p2></div>
+        <p>Caption: {sighting.caption}</p>
+        <div className='dummy-map'> <p2>Geolocation</p2></div>
+      </div>
     </div>
   );
 }
