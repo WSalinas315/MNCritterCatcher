@@ -1,5 +1,4 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 // POST new sighting to database and fetch all sightings for the signed in user
@@ -35,10 +34,21 @@ function* deleteSighting(action) {
   }
 }
 
+// Fetch sighting count for signed in user from database and assign to sightingCount reducer
+function* fetchCount(action) {
+  try {
+    const count = yield axios.get(`/api/sighting/count/${action.payload}`);
+    yield put({ type: 'SET_COUNT', payload: count.data[0].sighting_count });
+  } catch (error) {
+    console.log('GET sightings error:', error);
+  }
+}
+
 function* sighting() {
   yield takeLatest('NEW_SIGHTING', postSighting);
   yield takeLatest('FETCH_SIGHTINGS', fetchSightings);
   yield takeLatest('DELETE_SIGHTING', deleteSighting);
+  yield takeLatest('FETCH_COUNT', fetchCount);
 }
 
 export default sighting;

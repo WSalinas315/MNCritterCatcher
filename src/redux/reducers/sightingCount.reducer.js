@@ -1,8 +1,8 @@
-const sightingCount = (state = 0, action) => {
+const sightingCount = (state = [], action) => {
   switch (action.type) {
     // Clear count number
     case 'CLEAR_COUNT':
-      return 0;
+      return [];
     // Set sightings from database
     case 'SET_COUNT':
       return action.payload;

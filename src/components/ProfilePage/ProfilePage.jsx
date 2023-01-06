@@ -16,12 +16,12 @@ export default function ProfilePage(props) {
 
   // Pull user and sightings information from store
   const user = useSelector((store) => store.user);
-  // const sightings = useSelector((store) => store.sightings);
+  const count = useSelector((store) => store.sightingCount);
 
-  // fetches subtypes from database
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_SIGHTINGS'})
-  // }, []);
+  // fetches sighting count from database
+  useEffect(() => {
+    dispatch({ type: 'FETCH_COUNT', payload: user.id})
+  }, []);
 
   return (
     <div className='profile-page'>
@@ -51,7 +51,7 @@ export default function ProfilePage(props) {
       <h1>{user.username}</h1>
 
       {/* Sightings Count */}
-      <h2>Sightings: </h2>
+      <h2>Sightings: {count}</h2>
 
       {/* Challenges Count (Stretch) */}
       <h2>Challenges Completed: </h2>
