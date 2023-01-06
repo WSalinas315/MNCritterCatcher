@@ -27,7 +27,8 @@ function* fetchSightings(action) {
 // Fetch all sightings for signed in user from database and assign to sightings reducer
 function* deleteSighting(action) {
   try {
-    yield axios.delete(`/api/sighting/${action.payload}`);
+    yield axios.delete(`/api/sighting/${action.payload.sighting}`);
+    yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user});
     // COUNT REFRESH GET
   } catch (error) {
     console.log('GET sightings error:', error);

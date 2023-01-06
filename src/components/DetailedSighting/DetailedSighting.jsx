@@ -21,7 +21,7 @@ export default function DetailedSighting(props) {
 
   // function to delete the sighting and return to the sightings list
   const deleteSighting = () => {
-    dispatch({type: 'DELETE_SIGHTING', payload: sighting.id});
+    dispatch({type: 'DELETE_SIGHTING', payload: {sighting: sighting.id, user: user.id}});
     history.push('/sightings');
   }
 
