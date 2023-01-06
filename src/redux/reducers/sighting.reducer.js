@@ -1,4 +1,3 @@
-
 const sighting = (state = [], action) => {
   switch (action.type) {
     // Clear reducer data

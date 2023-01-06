@@ -7,6 +7,7 @@ function* postSighting(action) {
   try {
     yield axios.post(`/api/sighting/`, action.payload);
     yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user_id});
+    yield put({ type: 'SET_AUTOFILL_FALSE'});
   } catch (error) {
     console.log('POST sighting error:', error);
   }

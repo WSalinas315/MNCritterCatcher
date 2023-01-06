@@ -7,14 +7,24 @@ import { FiPlus } from 'react-icons/fi';
 import InputAdornment from '@mui/material/InputAdornment';
 import './Sightings.css';
 
-
 export default function Sightings(props) {
+
+  // Initialize user data from store
+  const user = useSelector(store => store.user);
 
   // Initialize local state
   const [sightingFilter, setSightingFilter] = useState('');
 
   // Initialize history
   const history = useHistory();
+
+  // Initialize dispatch
+  const dispatch = useDispatch();
+
+  // fetches sightings from database
+  useEffect(() => {
+    dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id })
+  }, []);
 
   return (
     <div className='sightings-body'>
@@ -49,8 +59,10 @@ export default function Sightings(props) {
       <div className='sightings-feed'>
         <h1>Sightings</h1>
 
+        
+
         {/* map sighting feed */}
-          {/* <SightingCard /> */}
+        {/* <SightingCard /> */}
       </div>
 
     </div>

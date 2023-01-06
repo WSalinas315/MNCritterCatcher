@@ -18,7 +18,6 @@ export default function AddSighting(props) {
   const dispatch = useDispatch();
 
   // initialize variables from store
-  // const animalType = useSelector(store => store.filterSearch.type);
   const subtypes = useSelector(store => store.filterSearch.subtypes);
   const families = useSelector(store => store.filterSearch.families);
   const speciesNames = useSelector(store => store.filterSearch.species);
@@ -37,7 +36,7 @@ export default function AddSighting(props) {
   const [location, setLocation] = useState('');
   const date = new Date();
 
-  // POST sighting when Submit button is clicked
+  // POST sighting when Submit button is clicked and direct to sightings feed
   const submitSighting = () => {
     dispatch({type: 'NEW_SIGHTING', 
               payload: {
@@ -48,10 +47,7 @@ export default function AddSighting(props) {
                 caption: caption,
                 image: image
     }});
-    
     history.push('/sightings');
-    // timing
-    //dispatch({ type: 'SET_AUTOFILL_FALSE' });
   }
 
   // function to set subType state and dispatch fetch families
