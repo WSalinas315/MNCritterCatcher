@@ -14,6 +14,7 @@ import SpeciesPage from '../SpeciesPage/SpeciesPage';
 import Sightings from '../Sightings/Sightings';
 import AddSighting from '../AddSighting/AddSighting';
 import DetailedSighting from '../DetailedSighting/DetailedSighting';
+import EditProfile from '../EditProfile/EditProfile';
 import './App.css';
 
 function App() {
@@ -82,6 +83,11 @@ function App() {
             <ProfilePage />
           </ProtectedRoute>
 
+          {/* logged in shows Profile Page, else shows LoginPage */}
+          <ProtectedRoute exact path="/profile/edit">
+            <EditProfile />
+          </ProtectedRoute>
+
           {/* logged in shows Add Sighting Form, else shows LoginPage */}
           <ProtectedRoute exact path="/sightings/add">
             <AddSighting />
@@ -91,11 +97,6 @@ function App() {
           <ProtectedRoute exact path="/sightings/detailed/:id">
             <DetailedSighting />
           </ProtectedRoute>
-
-          {/* logged in shows InfoPage else shows LoginPage */}
-          {/* <ProtectedRoute exact path="/info">
-            <InfoPage />
-          </ProtectedRoute> */}
 
           {/* If the user is already logged in, redirect to the /user page, Otherwise, show the login page */}
           <Route exact path="/login">
