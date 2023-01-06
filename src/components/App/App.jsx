@@ -20,7 +20,7 @@ function App() {
   // initialize dispatch
   const dispatch = useDispatch();
 
-  // inititialize user from store
+  // initialize user from store
   const user = useSelector(store => store.user);
 
   // use effect for fetching user data

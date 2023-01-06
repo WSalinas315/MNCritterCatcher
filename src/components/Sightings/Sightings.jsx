@@ -5,7 +5,9 @@ import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { FiPlus } from 'react-icons/fi';
 import InputAdornment from '@mui/material/InputAdornment';
+import '../SightingList/SightingList'; 
 import './Sightings.css';
+import SightingList from '../SightingList/SightingList';
 
 export default function Sightings(props) {
 
@@ -58,8 +60,8 @@ export default function Sightings(props) {
       {/* Scrollable sighting feed */}
       <div className='sightings-feed'>
         <h1>Sightings</h1>
+        <SightingList />
 
-        
 
         {/* map sighting feed */}
         {/* <SightingCard /> */}
