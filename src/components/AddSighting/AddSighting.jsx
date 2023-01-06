@@ -32,13 +32,26 @@ export default function AddSighting(props) {
   const [subType, setSubType] = useState('');
   const [family, setFamily] = useState('');
   const [species, setSpecies] = useState('');
-  const [animalID, setAnimalID] = useState('');
+  // const [animalID, setAnimalID] = useState('');
   const [image, setImage] = useState('');
   const [location, setLocation] = useState('');
+  const date = new Date();
 
   // POST sighting when Submit button is clicked
   const submitSighting = () => {
-
+    dispatch({type: 'NEW_SIGHTING', 
+              payload: {
+                user_id: user.id,
+                animal_id: selected.id,
+                date: date,
+                location: location,
+                caption: caption,
+                image: image
+    }});
+    
+    history.push('/sightings');
+    // timing
+    //dispatch({ type: 'SET_AUTOFILL_FALSE' });
   }
 
   // function to set subType state and dispatch fetch families

@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
   console.log('In sighting router GET');
   let userID = req.params.id;
-  let sightingsQuery = `SELECT * FROM "sightings" WHERE "user_id" = $1;`;
+  let sightingsQuery = `SELECT * FROM "sighting" WHERE "user_id" = $1;`;
   pool.query(sightingsQuery, [userID]).then((result) => {
     res.send(result.rows);
   }).catch((error) => {

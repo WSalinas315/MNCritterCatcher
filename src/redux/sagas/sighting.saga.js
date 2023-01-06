@@ -6,7 +6,7 @@ import axios from 'axios';
 function* postSighting(action) {
   try {
     yield axios.post(`/api/sighting/`, action.payload);
-    yield put({ type: 'FETCH_SIGHTINGS'});
+    yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user_id});
   } catch (error) {
     console.log('POST sighting error:', error);
   }
@@ -14,24 +14,14 @@ function* postSighting(action) {
 
 // Fetch all sightings for signed in user from database and assign to sightings reducer
 function* fetchSightings(action) {
-  const user = useSelector(store => store.user);
   try {
-    const sightings = yield axios.get(`/api/sighting/${user.id}`);
+    const sightings = yield axios.get(`/api/sighting/${action.payload}`);
     yield put({ type: 'SET_SIGHTINGS', payload: sightings.data });
+    // COUNT REFRESH GET
   } catch (error) {
     console.log('GET sightings error:', error);
   }
 }
-
-// Fetch Species from database and assign data to filterSearch reducer
-// function* fetchSpecies(action) {
-//   try {
-//     const species = yield axios.get(`/api/search/species/${action.payload}`);
-//     yield put({ type: 'SET_SPECIES', payload: species.data });
-//   } catch (error) {
-//     console.log('GET species error:', error);
-//   }
-// }
 
 function* sighting() {
   yield takeLatest('NEW_SIGHTING', postSighting);
