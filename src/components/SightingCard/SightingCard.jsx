@@ -11,8 +11,13 @@ export default function SightingCard({ sighting, user }) {
   // Initialize history
   const history = useHistory();
 
+  const viewDetailed = () => {
+    dispatch({type: 'SET_DETAILED_SIGHTING', payload: sighting});
+    history.push(`/sightings/detailed/${sighting.id}`);
+  }
+
   return (
-    <div className='sighting-card' key={sighting.id} onClick={() => history.push(`/sightings/detailed/${sighting.id}`)}>
+    <div className='sighting-card' key={sighting.id} onClick={() => viewDetailed()}>
       <div className='dummy-class'>
         <p>{user}</p>
         <h3>picture here</h3>

@@ -13,6 +13,7 @@ import ProfilePage from '../ProfilePage/ProfilePage';
 import SpeciesPage from '../SpeciesPage/SpeciesPage';
 import Sightings from '../Sightings/Sightings';
 import AddSighting from '../AddSighting/AddSighting';
+import DetailedSighting from '../DetailedSighting/DetailedSighting';
 import './App.css';
 
 function App() {
@@ -84,6 +85,11 @@ function App() {
           {/* logged in shows Add Sighting Form, else shows LoginPage */}
           <ProtectedRoute exact path="/sightings/add">
             <AddSighting />
+          </ProtectedRoute>
+
+          {/* logged in shows Detailed Sighting Page, else shows LoginPage */}
+          <ProtectedRoute exact path="/sightings/detailed/:id">
+            <DetailedSighting />
           </ProtectedRoute>
 
           {/* logged in shows InfoPage else shows LoginPage */}
