@@ -21,9 +21,9 @@ router.post('/', (req, res) => {
   console.log('In sighting router POST');
   let sighting = req.body;
   console.log('Sighting info submitted to server:', sighting);
-  let sightingQuery = `INSERT INTO "sighting" ("user_id", "animal_id", "date", "location", "caption", "image")
-                       VALUES ($1, $2, $3, $4, $5, $6);`;
-  pool.query(sightingQuery, [sighting.user_id, sighting.animal_id, sighting.date, sighting.location, sighting.caption, sighting.image]).then((result) => {
+  let sightingQuery = `INSERT INTO "sighting" ("user_id", "animal_id", "date", "location", "caption", "image", "public")
+                       VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+  pool.query(sightingQuery, [sighting.user_id, sighting.animal_id, sighting.date, sighting.location, sighting.caption, sighting.image, sighting.public]).then((result) => {
     res.sendStatus(201);
   }).catch((error) => {
     console.log('Error posting a new sighting:', error);

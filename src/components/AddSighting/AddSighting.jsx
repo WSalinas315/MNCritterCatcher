@@ -7,6 +7,9 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { Button, FormControl, TextField } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import './AddSighting.css';
 
 export default function AddSighting(props) {
@@ -31,22 +34,25 @@ export default function AddSighting(props) {
   const [subType, setSubType] = useState('');
   const [family, setFamily] = useState('');
   const [species, setSpecies] = useState('');
-  // const [animalID, setAnimalID] = useState('');
   const [image, setImage] = useState('');
   const [location, setLocation] = useState('');
+  const [visibility, setVisibility] = useState(false);
   const date = new Date();
 
   // POST sighting when Submit button is clicked and direct to sightings feed
   const submitSighting = () => {
-    dispatch({type: 'NEW_SIGHTING', 
-              payload: {
-                user_id: user.id,
-                animal_id: selected.id,
-                date: date,
-                location: location,
-                caption: caption,
-                image: image
-    }});
+    dispatch({
+      type: 'NEW_SIGHTING',
+      payload: {
+        user_id: user.id,
+        animal_id: selected.id,
+        date: date,
+        location: location,
+        caption: caption,
+        image: image,
+        public: visibility
+      }
+    });
     history.push('/sightings');
   }
 
@@ -80,6 +86,11 @@ export default function AddSighting(props) {
   const xButton = () => {
     history.goBack();
     dispatch({ type: 'SET_AUTOFILL_FALSE' });
+  }
+
+  // function to toggle post visibility between true and false
+  const toggleVisibility = () => {
+    setVisibility(!visibility);
   }
 
   return (
@@ -255,6 +266,11 @@ export default function AddSighting(props) {
 
         {/* GeoLocation Tagging */}
         <h3>GeoLocation Select Here</h3>
+
+        {/* Post Visibility */}
+        <FormGroup>
+          <FormControlLabel control={<Checkbox onChange={() => toggleVisibility()} />} label="Public Sighting" />
+        </FormGroup>
 
         {/* View Entry button (disabled if form is not filled out) */}
         <Box textAlign="center" >

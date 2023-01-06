@@ -52,7 +52,8 @@ CREATE TABLE "sighting" (
     "date" DATE NOT NULL,
     "location" VARCHAR (512),
     "caption" VARCHAR (255),
-    "image" VARCHAR (255)
+    "image" VARCHAR (255),
+    "public" BOOLEAN NOT NULL
 );
 
 -- Challenge_User Junction Table
