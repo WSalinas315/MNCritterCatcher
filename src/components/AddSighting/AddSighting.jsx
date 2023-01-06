@@ -94,7 +94,7 @@ export default function AddSighting(props) {
   }
 
   return (
-    <div>
+    <div className='add-body'>
       {/* Page Head */}
       <div className='ref-menu'>
         {/* Close Button */}
@@ -121,7 +121,23 @@ export default function AddSighting(props) {
         </FormControl>
 
         {/* Image Upload */}
-        <h3>Image Upload Here</h3>
+        {/* <FormControl>
+          <Button variant="contained" component="label">
+            Upload Photo
+            <input type="file" hidden />
+          </Button>
+        </FormControl> */}
+        <input
+          accept="image/*"
+          style={{ display: 'none' }}
+          id="raised-button-file"
+          type="file"
+        />
+        <label htmlFor="raised-button-file">
+          <Button variant="contained" component="span">
+            Upload Photo
+          </Button>
+        </label>
 
         {/* Animal Type Drop Down 
             If selectedAnimal is populated, the field auto-populates and is disabled
