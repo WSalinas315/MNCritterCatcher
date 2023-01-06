@@ -24,10 +24,20 @@ function* fetchSightings(action) {
   }
 }
 
+// Fetch all sightings for signed in user from database and assign to sightings reducer
+function* deleteSighting(action) {
+  try {
+    yield axios.delete(`/api/sighting/${action.payload}`);
+    // COUNT REFRESH GET
+  } catch (error) {
+    console.log('GET sightings error:', error);
+  }
+}
+
 function* sighting() {
   yield takeLatest('NEW_SIGHTING', postSighting);
   yield takeLatest('FETCH_SIGHTINGS', fetchSightings);
-  // yield takeLatest('FETCH_SPECIES', fetchSpecies);
+  yield takeLatest('DELETE_SIGHTING', deleteSighting);
 }
 
 export default sighting;

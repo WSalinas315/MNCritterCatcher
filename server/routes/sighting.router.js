@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
   console.log('In server router DELETE');
   let sightingID = req.params.id;
-  let deleteQuery = `DELETE FROM "sightings" WHERE "id" = $1;`;
+  let deleteQuery = `DELETE FROM "sighting" WHERE "id" = $1;`;
   pool.query(deleteQuery, [sightingID]).then((result)=> {
     res.sendStatus(200);
   }).catch((error) => {
