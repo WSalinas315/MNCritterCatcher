@@ -72,5 +72,20 @@ router.get('/count/:id', (req, res) => {
   });
 });
 
+/* GET detailed information of a sighting */
+router.get('/detailed/:id', (req, res) => {
+  console.log('In detailed sighting router count GET');
+  let sightingID = req.params.id;
+  console.log('Sighting ID in count GET is:', sightingID);
+  let sightingsQuery = `SELECT "sighting".*, "animal"."name" FROM "sighting"
+                        JOIN "animal" ON "animal"."id" = "sighting"."animal_id"
+                        WHERE "sighting"."id" = $1;`;
+  pool.query(sightingsQuery, [sightingID]).then((result) => {
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error retrieving sightings for user', sightingID, ':', error);
+    res.sendStatus(500);
+  });
+});
 
 module.exports = router;

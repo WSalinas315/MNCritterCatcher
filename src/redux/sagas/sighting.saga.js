@@ -46,11 +46,22 @@ function* fetchCount(action) {
   }
 }
 
+// Fetch sighting count for signed in user from database and assign to sightingCount reducer
+function* fetchDetailed(action) {
+  try {
+    const details = yield axios.get(`/api/sighting/detailed/${action.payload}`);
+    yield put({ type: 'SET_DETAILED_SIGHTING', payload: details.data });
+  } catch (error) {
+    console.log('GET detailed sightings error:', error);
+  }
+}
+
 function* sighting() {
   yield takeLatest('NEW_SIGHTING', postSighting);
   yield takeLatest('FETCH_SIGHTINGS', fetchSightings);
   yield takeLatest('DELETE_SIGHTING', deleteSighting);
   yield takeLatest('FETCH_COUNT', fetchCount);
+  yield takeLatest('FETCH_DETAILED_SIGHTING', fetchDetailed);
 }
 
 export default sighting;

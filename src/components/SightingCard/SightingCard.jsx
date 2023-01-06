@@ -12,7 +12,7 @@ export default function SightingCard({ sighting, user }) {
   const history = useHistory();
 
   const viewDetailed = () => {
-    dispatch({type: 'SET_DETAILED_SIGHTING', payload: sighting});
+    dispatch({type: 'FETCH_DETAILED_SIGHTING', payload: sighting.id});
     history.push(`/sightings/detailed/${sighting.id}`);
   }
 

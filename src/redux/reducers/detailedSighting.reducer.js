@@ -5,7 +5,7 @@ const detailed = (state = {}, action) => {
       return {};
     // Set detailed sighting
     case 'SET_DETAILED_SIGHTING':
-      return action.payload;
+      return action.payload[0];
     default:
       return state;
   }

@@ -16,24 +16,21 @@ export default function DetailedSighting(props) {
   // Initialize history
   const history = useHistory();
 
-  // Initialize variable with sighting ID
-  // const sightingID = useParams();
-
   // function to delete the sighting and return to the sightings list
   const deleteSighting = () => {
-    dispatch({type: 'DELETE_SIGHTING', payload: {sighting: sighting.id, user: user.id}});
+    dispatch({ type: 'DELETE_SIGHTING', payload: { sighting: sighting.id, user: user.id } });
     history.push('/sightings');
   }
 
   return (
     <div>
       <div className='top-thingy'>
-        <Button variant='contained' sx={{margin: "20px"}} onClick={() => deleteSighting()}>Delete</Button>
-        <Button variant='contained' sx={{margin: "20px"}}>Edit</Button>
-        <Button variant='contained' sx={{margin: "20px"}} onClick={() => history.goBack()}>Back</Button>
+        <Button variant='contained' sx={{ margin: "20px" }} onClick={() => deleteSighting()}>Delete</Button>
+        <Button variant='contained' sx={{ margin: "20px" }}>Edit</Button>
+        <Button variant='contained' sx={{ margin: "20px" }} onClick={() => history.goBack()}>Back</Button>
       </div>
       <div>
-        <h1>Animal ID: {sighting.animal_id}</h1>
+        <h1>{sighting.name}</h1>
         <h3>Date Seen: {sighting.date}</h3>
         <div className='dummy-image'> <p>Image Here</p></div>
         <p>Caption: {sighting.caption}</p>
