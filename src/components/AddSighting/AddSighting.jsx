@@ -18,11 +18,13 @@ export default function AddSighting(props) {
   const dispatch = useDispatch();
 
   // initialize variables from store
-  const animalType = useSelector(store => store.filterSearch.type);
+  // const animalType = useSelector(store => store.filterSearch.type);
   const subtypes = useSelector(store => store.filterSearch.subtypes);
   const families = useSelector(store => store.filterSearch.families);
   const speciesNames = useSelector(store => store.filterSearch.species);
   const selected = useSelector(store => store.selectedAnimal);
+  const autofill = useSelector(store => store.autofill);
+  const user = useSelector(store => store.user);
 
   // Initialize local state
   const [caption, setCaption] = useState('');
@@ -30,40 +32,53 @@ export default function AddSighting(props) {
   const [subType, setSubType] = useState('');
   const [family, setFamily] = useState('');
   const [species, setSpecies] = useState('');
+  const [animalID, setAnimalID] = useState('');
+  const [image, setImage] = useState('');
+  const [location, setLocation] = useState('');
+
+  // POST sighting when Submit button is clicked
+  const submitSighting = () => {
+
+  }
 
   // function to set subType state and dispatch fetch families
   const getSubtypes = (event) => {
     setType(event.target.value);
-    // dispatch({type: 'FETCH_FAMILIES', payload: event.target.value});
+    dispatch({ type: 'SET_TYPE', payload: event.target.value });
+    dispatch({ type: 'FETCH_SUBTYPES', payload: event.target.value });
   }
 
   // function to set subType state and dispatch fetch families
   const getFamilies = (event) => {
     setSubType(event.target.value);
-    // dispatch({type: 'FETCH_FAMILIES', payload: event.target.value});
+    dispatch({ type: 'FETCH_FAMILIES', payload: event.target.value });
   }
 
   // function to set families state and dispatch fetch species
   const getSpecies = (event) => {
     setFamily(event.target.value);
-    // dispatch({type: 'FETCH_SPECIES', payload: event.target.value});
+    dispatch({ type: 'FETCH_SPECIES', payload: event.target.value });
   }
 
   // function to set species state and dispatch selected species to filterSearch reducer
   const selectSpecies = (event) => {
     setSpecies(event.target.value);
-    // dispatch({type:'SET_SELECTED', payload: event.target.value});
+    dispatch({ type: 'SET_SELECTED', payload: event.target.value });
+    dispatch({ type: 'FETCH_ANIMAL_DATA', payload: event.target.value });
   }
 
-
+  // function to return to the previous page and set autofill to false if it is true
+  const xButton = () => {
+    history.goBack();
+    dispatch({ type: 'SET_AUTOFILL_FALSE' });
+  }
 
   return (
     <div>
-
       {/* Page Head */}
       <div className='ref-menu'>
         {/* Close Button */}
-        <div className='ref-menu-icon-container' onClick={() => history.goBack()}>
+        <div className='ref-menu-icon-container' onClick={() => xButton()}>
           <FiX className='ref-menu-icon' />
         </div>
         {/* Species Name */}
@@ -93,7 +108,7 @@ export default function AddSighting(props) {
             Otherwise normal search functionality exists */}
         <FormControl fullWidth >
           <InputLabel id="add-type">Animal Type*</InputLabel>
-          {selected.name ?
+          {autofill == true ?
             <Select
               disabled
               id="add-type"
@@ -120,7 +135,7 @@ export default function AddSighting(props) {
             Otherwise normal search functionality exists */}
         <FormControl fullWidth>
           <InputLabel id="add-subtype">Animal Subtype*</InputLabel>
-          {selected.name ?
+          {autofill == true ?
             <Select
               disabled
               id="add-subtype"
@@ -146,9 +161,9 @@ export default function AddSighting(props) {
                 value={subType}
                 onChange={(event) => getFamilies(event)}
               >
-                {/* {subtypes.map((subtype, i) => {
-              return(<MenuItem key={i} value={subtype.subtype}>{subtype.subtype}</MenuItem>)
-            })} */}
+                {subtypes.map((subtype, i) => {
+                  return (<MenuItem key={i} value={subtype.subtype}>{subtype.subtype}</MenuItem>)
+                })}
               </Select>
           }
         </FormControl>
@@ -158,7 +173,7 @@ export default function AddSighting(props) {
             Otherwise normal search functionality exists */}
         <FormControl fullWidth>
           <InputLabel id="add-family">Animal Family*</InputLabel>
-          {selected.name ?
+          {autofill == true ?
             <Select
               disabled
               id="add-family"
@@ -184,9 +199,9 @@ export default function AddSighting(props) {
                 value={family}
                 onChange={(event) => getSpecies(event)}
               >
-                {/* {families.map((family, i) => {
-              return(<MenuItem key={i} value={family.family}>{family.family}</MenuItem>)
-            })} */}
+                {families.map((family, i) => {
+                  return (<MenuItem key={i} value={family.family}>{family.family}</MenuItem>)
+                })}
               </Select>
           }
         </FormControl>
@@ -196,7 +211,7 @@ export default function AddSighting(props) {
             Otherwise normal search functionality exists */}
         <FormControl fullWidth>
           <InputLabel id="add-species">Animal Species*</InputLabel>
-          {selected.name ?
+          {autofill == true ?
             <Select
               disabled
               id="add-species"
@@ -220,12 +235,11 @@ export default function AddSighting(props) {
                 id="add-species"
                 label="Animal Species"
                 value={species}
-                // onChange={(event) => setSpecies(event.target.value)}
                 onChange={(event) => selectSpecies(event)}
               >
-                {/* {speciesNames.map((name, i) => {
-              return(<MenuItem key={i} value={name.name}>{name.name}</MenuItem>)
-            })} */}
+                {speciesNames.map((name, i) => {
+                  return (<MenuItem key={i} value={name.name}>{name.name}</MenuItem>)
+                })}
               </Select>
           }
         </FormControl>
@@ -233,24 +247,30 @@ export default function AddSighting(props) {
         {/* GeoLocation Tagging */}
         <h3>GeoLocation Select Here</h3>
 
-        {/* View Entry button (disabled if form is not completely filled out) */}
+        {/* View Entry button (disabled if form is not filled out) */}
         <Box textAlign="center" >
-          {selected.name ?
+          {autofill == true ?
             <Button
               variant='contained'
-              // onClick={() => history.push(`/reference/${species}`)}
               sx={{ width: "140px" }}
+              onClick={() => submitSighting()}
             >
               Submit
             </Button>
             :
-            <Button disabled variant='contained' sx={{ width: "140px" }}>Submit</Button>
+            species ?
+              <Button
+                variant='contained'
+                sx={{ width: "140px" }}
+                onClick={() => submitSighting()}
+              >
+                Submit
+              </Button>
+              :
+              <Button disabled variant='contained' sx={{ width: "140px" }}>Submit</Button>
           }
         </Box>
       </div>
-
-
-
     </div>
   );
 }

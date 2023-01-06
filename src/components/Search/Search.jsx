@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Button } from '@mui/material';
-import {GiDuck, GiSquirrel} from 'react-icons/gi';
+import { GiDuck, GiSquirrel } from 'react-icons/gi';
 import './Search.css';
 
 
@@ -22,15 +22,15 @@ export default function Search(props) {
 
   // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
   const selectBirds = () => {
-    dispatch({type:'SET_TYPE', payload: 'Bird'});
+    dispatch({ type: 'SET_TYPE', payload: 'Bird' });
     history.push('/search/birds');
   }
 
-    // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
-    const selectMammals = () => {
-      dispatch({type:'SET_TYPE', payload: 'Mammal'});
-      history.push('/search/mammals');
-    }
+  // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
+  const selectMammals = () => {
+    dispatch({ type: 'SET_TYPE', payload: 'Mammal' });
+    history.push('/search/mammals');
+  }
 
   return (
     <div className='search-body'>
@@ -39,7 +39,7 @@ export default function Search(props) {
       {/* Search by text */}
       <div className='search-box'>
         <h3>Begin searching with a keyword, e.g., duck</h3>
-        <TextField 
+        <TextField
           value={searchQuery}
           variant="outlined"
           InputProps={{
@@ -59,24 +59,24 @@ export default function Search(props) {
         {/* Bird search button */}
         <div className='bird-select'>
           <GiDuck className='animal-icon' />
-          <Button 
+          <Button
             variant="contained"
             // onClick={() => history.push('/search/birds')}
             onClick={() => selectBirds()}
-            sx={{width: "125px"}}>
-              Birds
-            </Button>
+            sx={{ width: "125px" }}>
+            Birds
+          </Button>
         </div>
         {/* Mammal search button */}
         <div className='mammal-select'>
           <GiSquirrel className='animal-icon' />
-          <Button 
+          <Button
             variant="contained"
             //onClick={() => history.push('/search/mammals')}
             onClick={() => selectMammals()}
-            sx={{width: "125px"}}>
-              Mammals
-            </Button>
+            sx={{ width: "125px" }}>
+            Mammals
+          </Button>
         </div>
       </div>
     </div>

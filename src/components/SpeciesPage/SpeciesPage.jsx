@@ -22,6 +22,12 @@ export default function SpeciesPage(props) {
   const speciesName = useSelector(store => store.filterSearch.selected);
   const animal = useSelector(store => store.selectedAnimal);
 
+  // function to direct to add a sighting page and update the autofill boolean
+  const addSighting = () => {
+    dispatch({type: 'SET_AUTOFILL_TRUE'});
+    history.push('/sightings/add');
+  }
+
   return (
     <div className='ref-body'>
 
@@ -55,7 +61,8 @@ export default function SpeciesPage(props) {
 
       {/* Add sighting button */}
       <div className='sighting-btn'>
-        <Button variant='contained' onClick={() => history.push('/sightings/add')}>Add Sighting</Button>
+        {/* <Button variant='contained' onClick={() => history.push('/sightings/add')}>Add Sighting</Button> */}
+        <Button variant='contained' onClick={() => addSighting()}>Add Sighting</Button>
       </div>
 
 
