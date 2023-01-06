@@ -7,6 +7,7 @@ function* postSighting(action) {
     yield axios.post(`/api/sighting/`, action.payload);
     yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user_id});
     yield put({ type: 'SET_AUTOFILL_FALSE'});
+    yield put({ type: 'FETCH_COUNT', payload: action.payload.user_id});
   } catch (error) {
     console.log('POST sighting error:', error);
   }
@@ -28,6 +29,7 @@ function* deleteSighting(action) {
   try {
     yield axios.delete(`/api/sighting/${action.payload.sighting}`);
     yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user});
+    yield put({ type: 'FETCH_COUNT', payload: action.payload.user});
     // COUNT REFRESH GET
   } catch (error) {
     console.log('GET sightings error:', error);
