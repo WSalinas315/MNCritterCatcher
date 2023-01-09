@@ -38,7 +38,7 @@ export default function AddSighting(props) {
   const [image, setImage] = useState('');
   const [location, setLocation] = useState('');
   const [visibility, setVisibility] = useState(false);
-  const date = new Date().toISOString().slice(0,10);
+  const date = new Date().toISOString().slice(0, 10);
 
   // POST sighting when Submit button is clicked and direct to sightings feed
   const submitSighting = () => {
@@ -50,7 +50,7 @@ export default function AddSighting(props) {
         date: date,
         location: location,
         caption: caption,
-        image: ('images/uploads/'+image),
+        image: ('images/uploads/' + image),
         public: visibility
       }
     });
@@ -127,7 +127,7 @@ export default function AddSighting(props) {
         <form method="POST" action="/post-photo-upload" encType="multipart/form-data" id="uploadTest">
           <div>
             <label>Upload Photo</label>
-            <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()}/>
+            <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()} />
             {/* <input type="file" name="photo-upload" onChange={() => {setImage(name.value)}} /> */}
           </div>
           <div>
@@ -302,9 +302,11 @@ export default function AddSighting(props) {
         <h3>GeoLocation Select Here</h3>
 
         {/* Post Visibility */}
-        <FormGroup>
-          <FormControlLabel control={<Checkbox onChange={() => toggleVisibility()} />} label="Public Sighting" />
-        </FormGroup>
+        <div className='public-sighting-box'>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox onChange={() => toggleVisibility()} />} label="Public Sighting" />
+          </FormGroup>
+        </div>
 
         {/* View Entry button (disabled if form is not filled out) */}
         <Box textAlign="center" >

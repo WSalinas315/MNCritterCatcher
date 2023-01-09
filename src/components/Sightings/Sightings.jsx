@@ -7,7 +7,7 @@ import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { FiPlus } from 'react-icons/fi';
 import InputAdornment from '@mui/material/InputAdornment';
-import '../SightingList/SightingList'; 
+import '../SightingList/SightingList';
 import './Sightings.css';
 import SightingList from '../SightingList/SightingList';
 
@@ -33,9 +33,9 @@ export default function Sightings(props) {
 
   const toggleVisibility = () => {
     // console.log('Visibility before toggle:', publicToggle);
-    if(publicToggle == false){
+    if (publicToggle == false) {
       console.log('executing public dispatch');
-      dispatch({type: 'FETCH_PUBLIC_SIGHTINGS'});
+      dispatch({ type: 'FETCH_PUBLIC_SIGHTINGS' });
     } else {
       console.log('executing private dispatch');
       dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id });
@@ -50,14 +50,17 @@ export default function Sightings(props) {
       {/* Search field and Add button */}
       <div className='sightings-head'>
         {/* Public/Private toggle */}
-        <ToggleButton
-          value="check"
-          color="info"
-          selected={publicToggle}
-          onChange={() => toggleVisibility()}
-        >
-          <PublicIcon />
-        </ToggleButton>
+        <div className='toggle-btn'>
+          <ToggleButton
+            value="check"
+            color="info"
+            selected={publicToggle}
+            onChange={() => toggleVisibility()}
+            sx={{height:"56px", width:"56"}}
+          >
+            <PublicIcon />
+          </ToggleButton>
+        </div>
 
         {/* Search field */}
         <div className='sightings-search'>
