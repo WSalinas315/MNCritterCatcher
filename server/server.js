@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+// const sharp = require('sharp');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
@@ -11,6 +13,26 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const sightingRouter = require('./routes/sighting.router');
+
+// Multer storage setup
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/images/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+const upload = multer({storage: storage});
+
+// Multer file availability
+app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('./public/images/uploads'));
+
+// Multer POST
+app.post('/post-photo-upload', upload.single('photo-upload'), function (req, res, next){
+  // res.send({filepath: req.file.path});
+});
 
 // Body parser middleware
 app.use(bodyParser.json());

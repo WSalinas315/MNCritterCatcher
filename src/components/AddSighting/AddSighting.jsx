@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
@@ -49,7 +50,7 @@ export default function AddSighting(props) {
         date: date,
         location: location,
         caption: caption,
-        image: image,
+        image: ('images/uploads/'+image),
         public: visibility
       }
     });
@@ -93,6 +94,12 @@ export default function AddSighting(props) {
     setVisibility(!visibility);
   }
 
+  const fetchFormData = () => {
+    let formData = parent.document.getElementById("photoUpload").value;
+    let output = formData.slice(12);
+    setImage(output);
+  }
+
   return (
     <div className='add-body'>
       {/* Page Head */}
@@ -110,6 +117,36 @@ export default function AddSighting(props) {
       {/* Form fields for adding a new sighting */}
       <div className='sighting-form'>
 
+        {/* Image Upload */}
+        {/* <FormControl>
+          <Button variant="contained" component="label">
+            Upload Photo
+            <input type="file" hidden />
+          </Button>
+        </FormControl> */}
+        <form method="POST" action="/post-photo-upload" encType="multipart/form-data" id="uploadTest">
+          <div>
+            <label>Upload Photo</label>
+            <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()}/>
+            {/* <input type="file" name="photo-upload" onChange={() => {setImage(name.value)}} /> */}
+          </div>
+          <div>
+            <input type="submit" value="Upload" />
+          </div>
+        </form>
+        {/* <input
+          accept="image/*"
+          style={{ display: 'none' }}
+          id="photo-upload-select"
+          
+          type="file"
+        />
+        <label htmlFor="photo-upload-select">
+          <Button variant="contained" component="span">
+            Select Photo
+          </Button>
+        </label> */}
+
         {/* Caption */}
         <FormControl>
           <TextField
@@ -119,25 +156,6 @@ export default function AddSighting(props) {
             onChange={(event) => setCaption(event.target.value)}
           />
         </FormControl>
-
-        {/* Image Upload */}
-        {/* <FormControl>
-          <Button variant="contained" component="label">
-            Upload Photo
-            <input type="file" hidden />
-          </Button>
-        </FormControl> */}
-        <input
-          accept="image/*"
-          style={{ display: 'none' }}
-          id="raised-button-file"
-          type="file"
-        />
-        <label htmlFor="raised-button-file">
-          <Button variant="contained" component="span">
-            Upload Photo
-          </Button>
-        </label>
 
         {/* Animal Type Drop Down 
             If selectedAnimal is populated, the field auto-populates and is disabled

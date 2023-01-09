@@ -20,7 +20,7 @@ export default function SightingCard({ sighting, user }) {
     <div className='sighting-card' key={sighting.id} onClick={() => viewDetailed()}>
       <div className='dummy-class'>
         <p>{user}</p>
-        <h3>picture here</h3>
+        <img src={sighting.image} />
       </div>
       <h3>{sighting.name}</h3>
       <p>Caption: {sighting.caption}</p>

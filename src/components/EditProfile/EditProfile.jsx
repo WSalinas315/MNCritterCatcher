@@ -9,7 +9,7 @@ export default function EditProfile(props) {
 
   return (
     <div>
-      <h2>{heading}</h2>
+      <h2>Edit Profile</h2>
     </div>
   );
 }
