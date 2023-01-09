@@ -12,18 +12,20 @@ export default function SightingCard({ sighting, user }) {
   const history = useHistory();
 
   const viewDetailed = () => {
-    dispatch({type: 'FETCH_DETAILED_SIGHTING', payload: sighting.id});
+    dispatch({ type: 'FETCH_DETAILED_SIGHTING', payload: sighting.id });
     history.push(`/sightings/detailed/${sighting.id}`);
   }
 
   return (
     <div className='sighting-card' key={sighting.id} onClick={() => viewDetailed()}>
-      {user}<br />
-      {sighting.date.slice(0,10)}
       <div className='dummy-class'>
         <img src={sighting.image} />
       </div>
-      <h3>{sighting.name}</h3>
+      <div className='post-info'>
+        {sighting.username}<br />
+        {sighting.date.slice(0, 10)}
+      </div>
+      <h2>{sighting.name}</h2>
       <p>{sighting.caption}</p>
     </div>
   );

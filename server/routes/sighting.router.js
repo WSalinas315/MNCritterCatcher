@@ -7,7 +7,8 @@ router.get('/:id', (req, res) => {
   console.log('In sighting router GET');
   let userID = req.params.id;
   console.log('User ID in GET is:', userID);
-  let sightingsQuery = `SELECT "sighting".*, "animal"."name" FROM "sighting" 
+  let sightingsQuery = `SELECT "sighting".*, "user"."username", "animal"."name" FROM "sighting"
+                        JOIN "user" ON "user"."id" = "sighting"."user_id"
                         JOIN "animal" ON "animal"."id" = "sighting"."animal_id"
                         WHERE "user_id" = $1 ORDER BY "sighting"."id" DESC;`;
   pool.query(sightingsQuery, [userID]).then((result) => {
@@ -19,7 +20,7 @@ router.get('/:id', (req, res) => {
 });
 
 /* GET all public sightings regardless of user from the database */
-router.get('/public', (req, res) => {
+router.get('/public/all', (req, res) => {
   console.log('In sighting router GET all public sightings');
   let sightingsQuery = `SELECT "sighting".*, "user"."username", "animal"."name" FROM "sighting"
                         JOIN "user" ON "user"."id" = "sighting"."user_id"

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import ToggleButton from '@mui/material/ToggleButton';
+import PublicIcon from '@mui/icons-material/Public';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { FiPlus } from 'react-icons/fi';
@@ -16,6 +18,7 @@ export default function Sightings(props) {
 
   // Initialize local state
   const [sightingFilter, setSightingFilter] = useState('');
+  const [publicToggle, setPublicToggle] = useState(false);
 
   // Initialize history
   const history = useHistory();
@@ -28,18 +31,41 @@ export default function Sightings(props) {
     dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id })
   }, []);
 
+  const toggleVisibility = () => {
+    // console.log('Visibility before toggle:', publicToggle);
+    if(publicToggle == false){
+      console.log('executing public dispatch');
+      dispatch({type: 'FETCH_PUBLIC_SIGHTINGS'});
+    } else {
+      console.log('executing private dispatch');
+      dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id });
+    }
+    setPublicToggle(!publicToggle);
+    // console.log('Visibility after toggle:', publicToggle);
+  }
+
   return (
     <div className='sightings-body'>
 
       {/* Search field and Add button */}
       <div className='sightings-head'>
+        {/* Public/Private toggle */}
+        <ToggleButton
+          value="check"
+          color="info"
+          selected={publicToggle}
+          onChange={() => toggleVisibility()}
+        >
+          <PublicIcon />
+        </ToggleButton>
+
         {/* Search field */}
         <div className='sightings-search'>
           <TextField
             value={sightingFilter}
             fullWidth
             variant="outlined"
-            placeholder='Search Your Sightings'
+            placeholder='Search Sightings'
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

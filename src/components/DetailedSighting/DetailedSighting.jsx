@@ -31,9 +31,11 @@ export default function DetailedSighting(props) {
       </div>
       <div>
         <h1>{sighting.name}</h1>
-        <h3>Date Seen: {sighting.date}</h3>
-        <div className='dummy-image'> <p>Image Here</p></div>
-        <p>Caption: {sighting.caption}</p>
+        {/* <h3>Date Seen: {sighting.date.slice(0,10)}</h3> */}
+        <div className='dummy-image'>
+          <img src={sighting.image} />
+        </div>
+        <p>{sighting.caption}</p>
         <div className='dummy-map'> <p>Geolocation</p></div>
       </div>
     </div>

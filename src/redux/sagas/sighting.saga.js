@@ -18,9 +18,18 @@ function* fetchSightings(action) {
   try {
     const sightings = yield axios.get(`/api/sighting/${action.payload}`);
     yield put({ type: 'SET_SIGHTINGS', payload: sightings.data });
-    // COUNT REFRESH GET
   } catch (error) {
     console.log('GET sightings error:', error);
+  }
+}
+
+// Fetch all sightings for signed in user from database and assign to sightings reducer
+function* fetchPublic(action) {
+  try {
+    const sightings = yield axios.get(`/api/sighting/public/all`);
+    yield put({ type: 'SET_SIGHTINGS', payload: sightings.data });
+  } catch (error) {
+    console.log('GET public sightings error:', error);
   }
 }
 
@@ -30,7 +39,6 @@ function* deleteSighting(action) {
     yield axios.delete(`/api/sighting/${action.payload.sighting}`);
     yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user});
     yield put({ type: 'FETCH_COUNT', payload: action.payload.user});
-    // COUNT REFRESH GET
   } catch (error) {
     console.log('GET sightings error:', error);
   }
@@ -62,6 +70,7 @@ function* sighting() {
   yield takeLatest('DELETE_SIGHTING', deleteSighting);
   yield takeLatest('FETCH_COUNT', fetchCount);
   yield takeLatest('FETCH_DETAILED_SIGHTING', fetchDetailed);
+  yield takeLatest('FETCH_PUBLIC_SIGHTINGS', fetchPublic);
 }
 
 export default sighting;
