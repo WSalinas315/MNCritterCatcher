@@ -19,7 +19,9 @@ router.get('/:id', (req, res) => {
 /* GET all public sightings regardless of user from the database */
 router.get('/', (req, res) => {
   console.log('In sighting router GET all public sightings');
-  let sightingsQuery = `SELECT * FROM "sighting" WHERE "public" = 'TRUE';`;
+  let sightingsQuery = `SELECT "sighting".*, "user"."username" FROM "sighting"
+                        JOIN "user" ON "user"."id" = "sighting"."user_id"
+                        WHERE "public" = 'TRUE';`;
   pool.query(sightingsQuery).then((result) => {
     res.send(result.rows);
   }).catch((error) => {
