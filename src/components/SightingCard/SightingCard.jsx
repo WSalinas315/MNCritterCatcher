@@ -18,12 +18,13 @@ export default function SightingCard({ sighting, user }) {
 
   return (
     <div className='sighting-card' key={sighting.id} onClick={() => viewDetailed()}>
+      {user}<br />
+      {sighting.date.slice(0,10)}
       <div className='dummy-class'>
-        <p>{user}</p>
         <img src={sighting.image} />
       </div>
       <h3>{sighting.name}</h3>
-      <p>Caption: {sighting.caption}</p>
+      <p>{sighting.caption}</p>
     </div>
   );
 }

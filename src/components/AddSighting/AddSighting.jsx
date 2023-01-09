@@ -38,7 +38,7 @@ export default function AddSighting(props) {
   const [image, setImage] = useState('');
   const [location, setLocation] = useState('');
   const [visibility, setVisibility] = useState(false);
-  const date = new Date();
+  const date = new Date().toISOString().slice(0,10);
 
   // POST sighting when Submit button is clicked and direct to sightings feed
   const submitSighting = () => {
