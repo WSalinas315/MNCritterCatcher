@@ -16,6 +16,18 @@ router.get('/:id', (req, res) => {
   });
 });
 
+/* GET all public sightings regardless of user from the database */
+router.get('/', (req, res) => {
+  console.log('In sighting router GET all public sightings');
+  let sightingsQuery = `SELECT * FROM "sighting" WHERE "public" = 'TRUE';`;
+  pool.query(sightingsQuery).then((result) => {
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error retrieving all public sightings:', error);
+    res.sendStatus(500);
+  });
+});
+
 /* POST a new sighting to the database */
 router.post('/', (req, res) => {
   console.log('In sighting router POST');
