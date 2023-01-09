@@ -22,7 +22,7 @@ export default function SightingCard({ sighting, user }) {
         <p>{user}</p>
         <h3>picture here</h3>
       </div>
-      <h3>ID:{sighting.animal_id} NamePlaceholder</h3>
+      <h3>{sighting.name}</h3>
       <p>Caption: {sighting.caption}</p>
     </div>
   );
