@@ -21,10 +21,15 @@ export default function SightingCard({ sighting, user }) {
       <div className='dummy-class'>
         <img src={sighting.image} />
       </div>
-      <div className='post-info'>
+      {sighting.image ? <div className='post-info'>
         {sighting.username}<br />
         {sighting.date.slice(0, 10)}
       </div>
+        :
+        <div>
+          {sighting.username}<br />
+          {sighting.date.slice(0, 10)}
+        </div>}
       <h2>{sighting.name}</h2>
       <p>{sighting.caption}</p>
     </div>
