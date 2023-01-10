@@ -10,11 +10,11 @@ import { Button } from '@mui/material';
 import { GiDuck, GiSquirrel } from 'react-icons/gi';
 import './Search.css';
 
-
 export default function Search(props) {
 
   // Initialize local state
-  const [searchQuery, setSearchQuery] = useState('');
+  const [textSearch, setTextSearch] = useState('');
+  const [textInputSearch, setTextInputSearch] = useState('');
 
   // Initialize history
   const history = useHistory();
@@ -42,40 +42,34 @@ export default function Search(props) {
     history.push('/search/mammals');
   }
 
+  const selectBySearch = (species) => {
+    dispatch({type:'SET_SELECTED', payload: species});
+    console.log('SELECT BY SEARCH PARAM:', species);
+    setTextSearch(species);
+    dispatch({type:'FETCH_ANIMAL_DATA', payload: species});
+    history.push(`/reference/${species}`);
+  }
+
   return (
     <div className='search-body'>
       {/* Page Title */}
       <h1>Discover Animals Around You</h1>
 
       {/* Search by text */}
-      {/* <div className='search-box'>
-        <h3>Begin searching with a keyword, e.g., duck</h3>
-        <TextField
-          value={searchQuery}
-          variant="outlined"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-          onChange={(event) => setSearchQuery(event.target.value)}
-        />
-      </div> */}
-
       <div className='search-box'>
         <h3>Begin searching with a keyword, e.g., duck</h3>
         <Stack className='search-bar' spacing={2} sx={{ width: 250 }}>
           <Autocomplete
             id="free-solo-demo"
+            InputValue={textSearch}
+            // onInputChange={(event, new)}
             freeSolo
             options={animalList.map((option) => option.name)}
+            onChange={(event) => {selectBySearch(event.target.textContent)}}
             renderInput={(params) => <TextField {...params} label="freeSolo" />} 
           />
         </Stack>
       </div>
-
 
       {/* Search via filters */}
       <div className='filter-select'>
