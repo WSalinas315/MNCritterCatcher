@@ -7,6 +7,7 @@ import autofill from './autofill.reducer';
 import sighting from './sighting.reducer';
 import detailed from './detailedSighting.reducer';
 import sightingCount from './sightingCount.reducer';
+import animalList from './animalList.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   sighting, // will contain a lits of all sightings posted by the current user
   detailed, // will contain the details of the sighting selected
   sightingCount, // will contain the number of sightings a user has
+  animalList, // will contain a list of animal names for autocomplete
 });
 
 export default rootReducer;

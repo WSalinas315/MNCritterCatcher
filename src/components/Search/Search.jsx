@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
@@ -19,6 +19,14 @@ export default function Search(props) {
 
   // Initialize dispatch
   const dispatch = useDispatch();
+
+  // Animal names from store
+  const animalList = useSelector(store => store.animalList);
+
+  // fetches animal list from database
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ANIMAL_LIST' })
+  }, []);
 
   // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
   const selectBirds = () => {

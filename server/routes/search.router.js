@@ -54,4 +54,16 @@ router.get('/selected/:name', (req, res) => {
   });
 });
 
+// GET for all species
+router.get('/all', (req, res) => {
+  const speciesQuery = `SELECT "name" FROM "animal" ORDER BY "name" ASC;`;
+  pool.query(speciesQuery).then((result) => {
+    console.log('RESULT HERE:', result);
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error getting subtypes:', error);
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;
