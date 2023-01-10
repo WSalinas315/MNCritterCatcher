@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {BsPersonCircle} from 'react-icons/bs';
-import {FiEdit, FiInfo} from 'react-icons/fi';
+import { BsPersonCircle } from 'react-icons/bs';
+import { FiEdit, FiInfo } from 'react-icons/fi';
+import LogOutButton from '../LogOutButton/LogOutButton';
 import './ProfilePage.css';
 
 
@@ -20,7 +21,7 @@ export default function ProfilePage(props) {
 
   // fetches sighting count from database
   useEffect(() => {
-    dispatch({ type: 'FETCH_COUNT', payload: user.id})
+    dispatch({ type: 'FETCH_COUNT', payload: user.id })
   }, []);
 
   return (
@@ -37,9 +38,10 @@ export default function ProfilePage(props) {
           <h1>Profile</h1>
         </div>
         {/* About */}
-        <div className='menu-icon-container' onClick={() => history.push('/about')}>
+        {/* <div className='menu-icon-container' onClick={() => history.push('/about')}>
           <FiInfo className='menu-icon' />
-        </div>
+        </div> */}
+        <LogOutButton className="btn" />
       </div>
 
       {/* Profile Picture / Generic Icon */}
