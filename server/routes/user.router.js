@@ -44,4 +44,20 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+/* PUT for updating profile image */
+router.put('/:id', (req, res) => {
+  let newImage = req.body.profile_image;
+  let userID = req.params.id;
+  console.log('In user router PUT');
+  console.log('Image is:', newImage);
+  console.log('UserID is:', userID);
+  let editQuery = `UPDATE "user" SET "profile_image" = $1 WHERE "id" = $2;`;
+  pool.query(editQuery, [newImage, userID]).then((result) => {
+    res.sendStatus(200);
+  }).catch((error) => {
+    console.log('Error editing user', userID, ':', error);
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;

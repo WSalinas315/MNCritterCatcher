@@ -2,4 +2,16 @@
   position: fixed;
   top: 0;
   width: 100vw;
+  text-align: center;
+}
+
+.profilePic{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.current-photo{
+  margin-bottom: 20px;
 }
