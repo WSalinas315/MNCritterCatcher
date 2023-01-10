@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import InputAdornment from '@mui/material/InputAdornment';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+// import SearchIcon from '@mui/icons-material/Search';
+// import InputAdornment from '@mui/material/InputAdornment';
 import { Button } from '@mui/material';
 import { GiDuck, GiSquirrel } from 'react-icons/gi';
 import './Search.css';
@@ -44,8 +46,9 @@ export default function Search(props) {
     <div className='search-body'>
       {/* Page Title */}
       <h1>Discover Animals Around You</h1>
+
       {/* Search by text */}
-      <div className='search-box'>
+      {/* <div className='search-box'>
         <h3>Begin searching with a keyword, e.g., duck</h3>
         <TextField
           value={searchQuery}
@@ -59,7 +62,20 @@ export default function Search(props) {
           }}
           onChange={(event) => setSearchQuery(event.target.value)}
         />
+      </div> */}
+
+      <div className='search-box'>
+        <h3>Begin searching with a keyword, e.g., duck</h3>
+        <Stack className='search-bar' spacing={2} sx={{ width: 250 }}>
+          <Autocomplete
+            id="free-solo-demo"
+            freeSolo
+            options={animalList.map((option) => option.name)}
+            renderInput={(params) => <TextField {...params} label="freeSolo" />} 
+          />
+        </Stack>
       </div>
+
 
       {/* Search via filters */}
       <div className='filter-select'>
