@@ -8,6 +8,7 @@ import sighting from './sighting.reducer';
 import detailed from './detailedSighting.reducer';
 import sightingCount from './sightingCount.reducer';
 import animalList from './animalList.reducer';
+import challenge from './challenge.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   detailed, // will contain the details of the sighting selected
   sightingCount, // will contain the number of sightings a user has
   animalList, // will contain a list of animal names for autocomplete
+  challenge, // will contain a list of challenges available to users
 });
 
 export default rootReducer;
