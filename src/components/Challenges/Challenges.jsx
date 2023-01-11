@@ -13,7 +13,7 @@ export default function Challenges(props) {
 
   return (
     <div>
-      <h2>{heading}</h2>
+      <h1>Challenges</h1>
     </div>
   );
 }
