@@ -42,18 +42,34 @@ export default function AddSighting(props) {
 
   // POST sighting when Submit button is clicked and direct to sightings feed
   const submitSighting = () => {
-    dispatch({
-      type: 'NEW_SIGHTING',
-      payload: {
-        user_id: user.id,
-        animal_id: selected.id,
-        date: date,
-        location: location,
-        caption: caption,
-        image: ('images/uploads/' + image),
-        public: visibility
-      }
-    });
+
+    {
+      image ?
+        dispatch({
+          type: 'NEW_SIGHTING',
+          payload: {
+            user_id: user.id,
+            animal_id: selected.id,
+            date: date,
+            location: location,
+            caption: caption,
+            image: ('images/uploads/' + image),
+            public: visibility
+          }
+        })
+        :
+        dispatch({
+          type: 'NEW_SIGHTING',
+          payload: {
+            user_id: user.id,
+            animal_id: selected.id,
+            date: date,
+            location: location,
+            caption: caption,
+            public: visibility
+          }
+        })
+    }
     history.push('/sightings');
   }
 

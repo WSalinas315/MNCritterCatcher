@@ -13,6 +13,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const sightingRouter = require('./routes/sighting.router');
+const challengeRouter = require('./routes/challenge.router');
 
 // Multer storage setup
 const storage = multer.diskStorage({
@@ -49,6 +50,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/sighting', sightingRouter);
+app.use('/api/challenge', challengeRouter);
 
 // Serve static files
 app.use(express.static('build'));
