@@ -66,7 +66,7 @@ export default function Search(props) {
             freeSolo
             options={animalList.map((option) => option.name)}
             onChange={(event) => {selectBySearch(event.target.textContent)}}
-            renderInput={(params) => <TextField {...params} label="freeSolo" />} 
+            renderInput={(params) => <TextField {...params} />} 
           />
         </Stack>
       </div>
