@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-// import SearchIcon from '@mui/icons-material/Search';
-// import InputAdornment from '@mui/material/InputAdornment';
 import { Button } from '@mui/material';
 import { GiDuck, GiSquirrel } from 'react-icons/gi';
 import './Search.css';
@@ -62,7 +60,6 @@ export default function Search(props) {
           <Autocomplete
             id="free-solo-demo"
             InputValue={textSearch}
-            // onInputChange={(event, new)}
             freeSolo
             options={animalList.map((option) => option.name)}
             onChange={(event) => {selectBySearch(event.target.textContent)}}
@@ -79,7 +76,6 @@ export default function Search(props) {
           <GiDuck className='animal-icon' />
           <Button
             variant="contained"
-            // onClick={() => history.push('/search/birds')}
             onClick={() => selectBirds()}
             sx={{ width: "125px" }}>
             Birds
@@ -90,7 +86,6 @@ export default function Search(props) {
           <GiSquirrel className='animal-icon' />
           <Button
             variant="contained"
-            //onClick={() => history.push('/search/mammals')}
             onClick={() => selectMammals()}
             sx={{ width: "125px" }}>
             Mammals

@@ -25,13 +25,13 @@ export default function DetailedSighting(props) {
   return (
     <div>
       <div className='top-thingy'>
-        <Button variant='contained' sx={{ margin: "20px" }} onClick={() => deleteSighting()}>Delete</Button>
-        <Button variant='contained' sx={{ margin: "20px" }}>Edit</Button>
         <Button variant='contained' sx={{ margin: "20px" }} onClick={() => history.goBack()}>Back</Button>
+        <Button variant='contained' sx={{ margin: "20px" }} onClick={() => deleteSighting()}>Delete</Button>
+        {/* <Button variant='contained' sx={{ margin: "20px" }}>Edit</Button> */}
       </div>
-      <div>
+      <div className='detailed-sighting'>
         <h1>{sighting.name}</h1>
-        {/* <h3>Date Seen: {sighting.date.slice(0,10)}</h3> */}
+        <h3>Date Seen: {sighting.date.slice(0,10)}</h3>
         <div className='dummy-image'>
           <img src={sighting.image} />
         </div>

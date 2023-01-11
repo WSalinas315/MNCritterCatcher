@@ -45,7 +45,6 @@ export default function SpeciesPage(props) {
       </div>
 
       {/* Animal Image */}
-      {/* Pizza image cover thingy this! */}
       <div>
         <img className='ref-img' src={animal.stock_image} />
       </div>
@@ -61,11 +60,8 @@ export default function SpeciesPage(props) {
 
       {/* Add sighting button */}
       <div className='sighting-btn'>
-        {/* <Button variant='contained' onClick={() => history.push('/sightings/add')}>Add Sighting</Button> */}
         <Button variant='contained' onClick={() => addSighting()}>Add Sighting</Button>
       </div>
-
-
     </div>
   );
 }
