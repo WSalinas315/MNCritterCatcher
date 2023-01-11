@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
-import ChallengeList from '../ChallengeList/ChallengeList';
-import './Challenges.css';
+import './ChallengeCard.css';
 
 
-export default function Challenges(props) {
+export default function ChallengeCard(props) {
   
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Functional Component');
@@ -12,7 +11,7 @@ export default function Challenges(props) {
   return (
     <div>
       {/* Page Title */}
-      <h1>Challenges</h1>
+      {/* <h2>{challenge.name}</h2> */}
     </div>
   );
 }
