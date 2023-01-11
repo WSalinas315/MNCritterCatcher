@@ -32,7 +32,6 @@ export default function Sightings(props) {
   }, []);
 
   const toggleVisibility = () => {
-    // console.log('Visibility before toggle:', publicToggle);
     if (publicToggle == false) {
       console.log('executing public dispatch');
       dispatch({ type: 'FETCH_PUBLIC_SIGHTINGS' });
@@ -41,7 +40,6 @@ export default function Sightings(props) {
       dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id });
     }
     setPublicToggle(!publicToggle);
-    // console.log('Visibility after toggle:', publicToggle);
   }
 
   return (
@@ -56,7 +54,7 @@ export default function Sightings(props) {
             color="info"
             selected={publicToggle}
             onChange={() => toggleVisibility()}
-            sx={{height:"56px", width:"56"}}
+            sx={{ height: "56px", width: "56" }}
           >
             <PublicIcon />
           </ToggleButton>
@@ -90,12 +88,7 @@ export default function Sightings(props) {
       <div className='sightings-feed'>
         <h1>Sightings</h1>
         <SightingList />
-
-
-        {/* map sighting feed */}
-        {/* <SightingCard /> */}
       </div>
-
     </div>
   );
 }
