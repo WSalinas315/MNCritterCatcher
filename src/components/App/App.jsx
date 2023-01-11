@@ -15,6 +15,7 @@ import Sightings from '../Sightings/Sightings';
 import AddSighting from '../AddSighting/AddSighting';
 import DetailedSighting from '../DetailedSighting/DetailedSighting';
 import EditProfile from '../EditProfile/EditProfile';
+import Challenges from '../Challenges/Challenges';
 import './App.css';
 
 function App() {
@@ -76,6 +77,11 @@ function App() {
           {/* logged in shows Sightings Feed, else shows LoginPage */}
           <ProtectedRoute exact path="/sightings">
             <Sightings />
+          </ProtectedRoute>
+
+          {/* logged in shows Sightings Feed, else shows LoginPage */}
+          <ProtectedRoute exact path="/challenges">
+            <Challenges />
           </ProtectedRoute>
 
           {/* logged in shows Profile Page, else shows LoginPage */}
