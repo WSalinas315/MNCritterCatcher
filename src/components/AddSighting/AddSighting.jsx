@@ -11,6 +11,7 @@ import { Button, FormControl, TextField } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import './AddSighting.css';
 
 export default function AddSighting(props) {
@@ -114,6 +115,18 @@ export default function AddSighting(props) {
     let formData = parent.document.getElementById("photoUpload").value;
     let output = formData.slice(12);
     setImage(output);
+  }
+
+  const findLocation = () => {
+    const success = (position) => {
+      console.log(position);
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+    }
+    const error = () => {
+      console.log('ERROR GETTING POSITION. NOOOOOOO!');
+    }
+    navigator.geolocation.getCurrentPosition(success, error);
   }
 
   return (
@@ -315,7 +328,9 @@ export default function AddSighting(props) {
         </FormControl>
 
         {/* GeoLocation Tagging */}
-        <h3>GeoLocation Select Here</h3>
+        {/* <h3>GeoLocation Select Here</h3> */}
+        <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
+
 
         {/* Post Visibility */}
         <div className='public-sighting-box'>
