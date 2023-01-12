@@ -38,7 +38,7 @@ CREATE TABLE "challenge" (
 );
 
 -- Challenge_Animal Junction Table
-CREATE TABLE "challege_animal" (
+CREATE TABLE "challenge_animal" (
     "id" SERIAL PRIMARY KEY,
     "animal_id" INT NOT NULL REFERENCES "animal",
     "challenge_id" INT NOT NULL REFERENCES "challenge"

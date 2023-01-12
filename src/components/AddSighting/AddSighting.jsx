@@ -70,6 +70,13 @@ export default function AddSighting(props) {
           }
         })
     }
+    dispatch({
+      type: 'UPDATE_CHALLENGE',
+      payload: {
+        user_id: user.id,
+        animal_id: selected.id
+      }
+    })
     history.push('/sightings');
   }
 
