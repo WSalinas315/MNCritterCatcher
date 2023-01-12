@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
@@ -37,7 +36,8 @@ export default function AddSighting(props) {
   const [family, setFamily] = useState('');
   const [species, setSpecies] = useState('');
   const [image, setImage] = useState('');
-  const [location, setLocation] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [visibility, setVisibility] = useState(false);
   const date = new Date().toISOString().slice(0, 10);
 
@@ -52,7 +52,8 @@ export default function AddSighting(props) {
             user_id: user.id,
             animal_id: selected.id,
             date: date,
-            location: location,
+            location_lat: latitude,
+            location_long: longitude,
             caption: caption,
             image: ('images/uploads/' + image),
             public: visibility
@@ -64,8 +65,9 @@ export default function AddSighting(props) {
           payload: {
             user_id: user.id,
             animal_id: selected.id,
+            location_long: longitude,
             date: date,
-            location: location,
+            location_lat: latitude,
             caption: caption,
             public: visibility
           }
@@ -120,8 +122,10 @@ export default function AddSighting(props) {
   const findLocation = () => {
     const success = (position) => {
       console.log(position);
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      // const latitude = position.coords.latitude;
+      // const longitude = position.coords.longitude;
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
     }
     const error = () => {
       console.log('ERROR GETTING POSITION. NOOOOOOO!');
