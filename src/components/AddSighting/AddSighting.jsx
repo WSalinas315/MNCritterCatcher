@@ -12,6 +12,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CircularProgress from '@mui/material/CircularProgress';
 import './AddSighting.css';
 
 export default function AddSighting(props) {
@@ -41,6 +42,7 @@ export default function AddSighting(props) {
   const [longitude, setLongitude] = useState('');
   const [visibility, setVisibility] = useState(false);
   const date = new Date().toISOString().slice(0, 10);
+  const [locationClick, setLocationClick] = useState(false);
 
   // POST sighting when Submit button is clicked and direct to sightings feed
   const submitSighting = () => {
@@ -114,22 +116,22 @@ export default function AddSighting(props) {
     setVisibility(!visibility);
   }
 
+  // Function to get the uploaded file name
   const fetchFormData = () => {
     let formData = parent.document.getElementById("photoUpload").value;
     let output = formData.slice(12);
     setImage(output);
   }
 
+  // Function to get location coordinates
   const findLocation = () => {
+    setLocationClick(true);
     const success = (position) => {
-      console.log(position);
-      // const latitude = position.coords.latitude;
-      // const longitude = position.coords.longitude;
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     }
     const error = () => {
-      console.log('ERROR GETTING POSITION. NOOOOOOO!');
+      console.log('ERROR GETTING POSITION.');
     }
     navigator.geolocation.getCurrentPosition(success, error);
   }
@@ -152,12 +154,6 @@ export default function AddSighting(props) {
       <div className='sighting-form'>
 
         {/* Image Upload */}
-        {/* <FormControl>
-          <Button variant="contained" component="label">
-            Upload Photo
-            <input type="file" hidden />
-          </Button>
-        </FormControl> */}
         <form method="POST" action="/post-photo-upload" encType="multipart/form-data" id="uploadTest">
           <div>
             <label>Upload Photo</label>
@@ -168,18 +164,6 @@ export default function AddSighting(props) {
             <input type="submit" value="Upload" />
           </div>
         </form>
-        {/* <input
-          accept="image/*"
-          style={{ display: 'none' }}
-          id="photo-upload-select"
-          
-          type="file"
-        />
-        <label htmlFor="photo-upload-select">
-          <Button variant="contained" component="span">
-            Select Photo
-          </Button>
-        </label> */}
 
         {/* Caption */}
         <FormControl>
@@ -333,10 +317,15 @@ export default function AddSighting(props) {
         </FormControl>
 
         {/* GeoLocation Tagging */}
-        {latitude ?
-          <Button variant='contained' color='success' startIcon={<CheckCircleIcon />}>Location Added</Button>
-          :
+        {locationClick == false
+          ?
           <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
+          :
+          latitude
+            ?
+            <Button variant='contained' color='success' startIcon={<CheckCircleIcon />}>Location Added</Button>
+            :
+            <div className='center-this'><CircularProgress /></div>
         }
 
 
