@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
@@ -11,6 +10,8 @@ import { Button, FormControl, TextField } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import './AddSighting.css';
 
 export default function AddSighting(props) {
@@ -36,7 +37,8 @@ export default function AddSighting(props) {
   const [family, setFamily] = useState('');
   const [species, setSpecies] = useState('');
   const [image, setImage] = useState('');
-  const [location, setLocation] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [visibility, setVisibility] = useState(false);
   const date = new Date().toISOString().slice(0, 10);
 
@@ -51,7 +53,8 @@ export default function AddSighting(props) {
             user_id: user.id,
             animal_id: selected.id,
             date: date,
-            location: location,
+            location_lat: latitude,
+            location_long: longitude,
             caption: caption,
             image: ('images/uploads/' + image),
             public: visibility
@@ -63,8 +66,9 @@ export default function AddSighting(props) {
           payload: {
             user_id: user.id,
             animal_id: selected.id,
+            location_long: longitude,
             date: date,
-            location: location,
+            location_lat: latitude,
             caption: caption,
             public: visibility
           }
@@ -114,6 +118,20 @@ export default function AddSighting(props) {
     let formData = parent.document.getElementById("photoUpload").value;
     let output = formData.slice(12);
     setImage(output);
+  }
+
+  const findLocation = () => {
+    const success = (position) => {
+      console.log(position);
+      // const latitude = position.coords.latitude;
+      // const longitude = position.coords.longitude;
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    }
+    const error = () => {
+      console.log('ERROR GETTING POSITION. NOOOOOOO!');
+    }
+    navigator.geolocation.getCurrentPosition(success, error);
   }
 
   return (
@@ -315,7 +333,12 @@ export default function AddSighting(props) {
         </FormControl>
 
         {/* GeoLocation Tagging */}
-        <h3>GeoLocation Select Here</h3>
+        {latitude ?
+          <Button variant='contained' color='success' startIcon={<CheckCircleIcon />}>Location Added</Button>
+          :
+          <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
+        }
+
 
         {/* Post Visibility */}
         <div className='public-sighting-box'>

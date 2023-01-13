@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import './DetailedSighting.css';
 
 export default function DetailedSighting(props) {
@@ -22,26 +24,62 @@ export default function DetailedSighting(props) {
     history.push('/sightings');
   }
 
+  // const { isLoaded } = useLoadScript({
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  });
+
+  // Map rendering with Marker
+  function Map() {
+    console.log('Coords:', 'lat', +sighting.location_lat, 'long:', +sighting.location_long);
+    return (
+      <GoogleMap
+        zoom={9}
+        center={{ lat: +sighting.location_lat, lng: +sighting.location_long }}
+        mapContainerStyle={{width: '100%', height: '250px'}}
+        mapContainerClassName="map-container"
+      >
+        <MarkerF position={{lat: +sighting.location_lat, lng: +sighting.location_long}} />
+      </GoogleMap>
+    )
+  }
+
+
   return (
-    <div>
-      <div className='top-thingy'>
+    <div className='detailed-page-body'>
+      <div className='detail-button-menu'>
+        {/* Go Back Button */}
         <Button variant='contained' sx={{ margin: "20px" }} onClick={() => history.goBack()}>Back</Button>
+
+        {/* Delete button that only renders if you're viewing your own post */}
         {user.id == sighting.user_id ?
           <Button variant='contained' sx={{ margin: "20px" }} onClick={() => deleteSighting()}>Delete</Button>
           :
           <></>
         }
-        {/* <Button variant='contained' sx={{ margin: "20px" }}>Edit</Button> */}
       </div>
+
       <div className='detailed-sighting'>
+
+        {/* Animal Name */}
         <h1>{sighting.name}</h1>
+
+        {/* Date Seen*/}
         <h3>Date Seen: {sighting.date?.slice(0, 10)}</h3>
-        {/* <h3>Date: {sighting.date}</h3> */}
-        <div className='dummy-image'>
-          <img src={sighting.image} />
+
+        {/* Image */}
+        <div className='detail-sighting-image'>
+          <img src={sighting.image}/>
         </div>
+
+        {/* Caption */}
         <p>{sighting.caption}</p>
-        <div className='dummy-map'> <p>Geolocation</p></div>
+
+        {/* Google Map */}
+        <div className='google-map'>
+          {sighting.location_lat ? isLoaded ? <Map /> : <CircularProgress /> : <></>}
+        </div>
       </div>
     </div>
   );
