@@ -2,23 +2,36 @@
   border: 1px black solid;
   border-radius: 10px;
   padding: 10px;
-  background-color:honeydew;
+  background-color:rgb(245, 245, 245);
   position: relative;
 }
 
 img{
-  padding-top: 5px;
-  z-index: 0;
+  padding-top: 0px;
   max-width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
 .post-info{
-  background-color: rgba(255, 255, 255, 0.686);
-  border-radius: 17px;
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-top: 12px;
+  display: flex;
+}
+
+.profile-img-small{
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.name-date{
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+.center-avatar{
+  /* Icon too hight, */
+  
 }
