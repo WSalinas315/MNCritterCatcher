@@ -47,10 +47,12 @@ export default function DetailedSighting(props) {
 
 
   return (
-    <div>
+    <div className='detailed-page-body'>
       <div className='detail-button-menu'>
-
+        {/* Go Back Button */}
         <Button variant='contained' sx={{ margin: "20px" }} onClick={() => history.goBack()}>Back</Button>
+
+        {/* Delete button that only renders if you're viewing your own post */}
         {user.id == sighting.user_id ?
           <Button variant='contained' sx={{ margin: "20px" }} onClick={() => deleteSighting()}>Delete</Button>
           :
@@ -76,7 +78,7 @@ export default function DetailedSighting(props) {
 
         {/* Google Map */}
         <div className='google-map'>
-          {isLoaded ? <Map /> : <CircularProgress />}
+          {sighting.location_lat ? isLoaded ? <Map /> : <CircularProgress /> : <></>}
         </div>
       </div>
     </div>
