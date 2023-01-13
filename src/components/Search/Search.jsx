@@ -5,7 +5,7 @@ import { TextField } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Button } from '@mui/material';
-import { GiDuck, GiSquirrel } from 'react-icons/gi';
+import { GiDuck, GiSquirrel, GiSandSnake } from 'react-icons/gi';
 import { IoFishSharp } from 'react-icons/io5';
 import './Search.css';
 
@@ -41,17 +41,23 @@ export default function Search(props) {
     history.push('/search/mammals');
   }
 
-   // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
-   const selectFish = () => {
+  // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
+  const selectFish = () => {
     dispatch({ type: 'SET_TYPE', payload: 'Fish' });
     history.push('/search/fish');
   }
 
+  // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
+  const selectReptiles = () => {
+    dispatch({ type: 'SET_TYPE', payload: 'Reptile' });
+    history.push('/search/reptile');
+  }
+
   const selectBySearch = (species) => {
-    dispatch({type:'SET_SELECTED', payload: species});
+    dispatch({ type: 'SET_SELECTED', payload: species });
     console.log('SELECT BY SEARCH PARAM:', species);
     setTextSearch(species);
-    dispatch({type:'FETCH_ANIMAL_DATA', payload: species});
+    dispatch({ type: 'FETCH_ANIMAL_DATA', payload: species });
     history.push(`/reference/${species}`);
   }
 
@@ -69,8 +75,8 @@ export default function Search(props) {
             InputValue={textSearch}
             freeSolo
             options={animalList.map((option) => option.name)}
-            onChange={(event) => {selectBySearch(event.target.textContent)}}
-            renderInput={(params) => <TextField {...params} />} 
+            onChange={(event) => { selectBySearch(event.target.textContent) }}
+            renderInput={(params) => <TextField {...params} />}
           />
         </Stack>
       </div>
@@ -85,7 +91,7 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectBirds()}
-            sx={{ width: "125px" }}>
+            sx={{ width: "200px" }}>
             Birds
           </Button>
         </div>
@@ -96,7 +102,7 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectMammals()}
-            sx={{ width: "125px" }}>
+            sx={{ width: "200px" }}>
             Mammals
           </Button>
         </div>
@@ -106,8 +112,18 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectFish()}
-            sx={{ width:"125px"}}>
+            sx={{ width: "200px" }}>
             Fish
+          </Button>
+        </div>
+
+        <div className='reptile-select'>
+          <GiSandSnake className='animal-icon' />
+          <Button
+            variant="contained"
+            onClick={() => selectReptiles()}
+            sx={{ width: "200px" }}>
+            Reptiles/Amphibians
           </Button>
         </div>
 

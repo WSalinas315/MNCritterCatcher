@@ -73,6 +73,11 @@ function App() {
             <SpeciesSelect type={'Fish'} />
           </ProtectedRoute>
 
+          {/* logged in shows Fish Species Search, else shows LoginPage */}
+          <ProtectedRoute exact path="/search/reptile">
+            <SpeciesSelect type={'Reptile'} />
+          </ProtectedRoute>
+
           {/* logged in shows Animal Reference Card, else shows LoginPage */}
           <ProtectedRoute exact path="/reference/:name">
             <SpeciesPage />
