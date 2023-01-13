@@ -56,7 +56,7 @@ export default function ProfilePage(props) {
       <h2>Sightings: {count}</h2>
 
       {/* Challenges Count (Stretch) */}
-      <h2>Challenges Completed: </h2>
+      {/* <h2>Challenges Completed: </h2> */}
 
       {/* Badges Display Case (Stretch) */}
 

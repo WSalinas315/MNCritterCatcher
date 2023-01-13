@@ -32,10 +32,10 @@ export default function DetailedSighting(props) {
 
   // Map rendering with Marker
   function Map() {
-    console.log('Coords:', 'lat', +sighting.location_lat, 'long:', +sighting.location_long);
+    // console.log('Coords:', 'lat', +sighting.location_lat, 'long:', +sighting.location_long);
     return (
       <GoogleMap
-        zoom={9}
+        zoom={12}
         center={{ lat: +sighting.location_lat, lng: +sighting.location_long }}
         mapContainerStyle={{width: '100%', height: '250px'}}
         mapContainerClassName="map-container"
