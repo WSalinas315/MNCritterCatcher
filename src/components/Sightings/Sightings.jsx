@@ -6,6 +6,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { FiPlus } from 'react-icons/fi';
+import {BsSliders} from 'react-icons/bs';
 import InputAdornment from '@mui/material/InputAdornment';
 import '../SightingList/SightingList';
 import './Sightings.css';
@@ -61,7 +62,7 @@ export default function Sightings(props) {
         </div>
 
         {/* Search field */}
-        <div className='sightings-search'>
+        {/* <div className='sightings-search'>
           <TextField
             value={sightingFilter}
             fullWidth
@@ -77,7 +78,19 @@ export default function Sightings(props) {
             onChange={(event) => setSightingFilter(event.target.value)}
             sx={{ margin: "10px 15px" }}
           />
+        </div> */}
+        <div className='toggle-btn'>
+          <ToggleButton
+            value="check"
+            color="info"
+            selected={publicToggle}
+            // onChange={() => toggleVisibility()}
+            sx={{ height: "56px", width: "56" }}
+          >
+            <BsSliders />
+          </ToggleButton>
         </div>
+
         {/* Add sighting button */}
         <div className='add-icon-container' onClick={() => history.push('/sightings/add')}>
           <FiPlus className='sightings-add-icon' />
