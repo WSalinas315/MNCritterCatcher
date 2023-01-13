@@ -316,7 +316,7 @@ export default function AddSighting(props) {
           }
         </FormControl>
 
-        {/* GeoLocation Tagging */}
+        {/* GeoLocation Tagging with conditional rendering*/}
         {locationClick == false
           ?
           <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
@@ -327,7 +327,6 @@ export default function AddSighting(props) {
             :
             <div className='center-this'><CircularProgress /></div>
         }
-
 
         {/* Post Visibility */}
         <div className='public-sighting-box'>
