@@ -11,6 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import './AddSighting.css';
 
 export default function AddSighting(props) {
@@ -332,8 +333,11 @@ export default function AddSighting(props) {
         </FormControl>
 
         {/* GeoLocation Tagging */}
-        {/* <h3>GeoLocation Select Here</h3> */}
-        <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
+        {latitude ?
+          <Button variant='contained' color='success' startIcon={<CheckCircleIcon />}>Location Added</Button>
+          :
+          <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
+        }
 
 
         {/* Post Visibility */}
