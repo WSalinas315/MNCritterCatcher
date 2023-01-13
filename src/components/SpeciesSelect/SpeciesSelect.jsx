@@ -53,7 +53,7 @@ export default function SpeciesSelect(props) {
   return (
     <div className='species-select-body'>
       {/* Page Title */}
-      <h1>Discover {props.type}s</h1>
+      {props.type == 'Fish' ? <h1>Discover {props.type}</h1> : <h1>Discover {props.type}s</h1>}
       <div className='input-fields'>
         
         {/* Animal Subtype Drop Down */}
