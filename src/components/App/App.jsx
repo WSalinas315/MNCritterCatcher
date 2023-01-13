@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
-import Home from '../Home/Home';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search';
@@ -51,7 +50,7 @@ function App() {
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           {/* logged in shows UserPage else shows LoginPage */}
           <ProtectedRoute exact path="/home">
-            <Home />
+            <Sightings />
           </ProtectedRoute>
 
           {/* logged in shows Animal Search, else shows LoginPage */}

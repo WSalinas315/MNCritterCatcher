@@ -48,7 +48,7 @@ export default function SightingCard({ sighting, user }) {
       </div>
 
       {/* Animal Name */}
-      <h2>{sighting.name}</h2>
+      <h3>{sighting.name}</h3>
 
       {/* Post Caption */}
       <p>{sighting.caption}</p>

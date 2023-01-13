@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from '@mui/icons-material/Add';
+import InfoIcon from '@mui/icons-material/Info';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
@@ -27,20 +29,20 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/search">
-              <SearchIcon onClick={() => clearFilterSearch()} />
-            </Link>
             <Link className="navLink" to="/sightings">
               <DynamicFeedIcon onClick={() => clearFilterSearch()} />
             </Link>
-            <Link className="navLink" to="/home">
-              <HomeIcon onClick={() => clearFilterSearch()} />
+            <Link className="navLink" to="/search">
+              <SearchIcon onClick={() => clearFilterSearch()} />
             </Link>
-            <Link className="navLink" to="/challenges">
-              <EmojiEventsIcon onClick={() => clearFilterSearch()} />
+            <Link className="navLink" to="/sightings/add">
+              <AddIcon onClick={() => clearFilterSearch()} />
             </Link>
             <Link className="navLink" to="/profile">
               <AccountBoxIcon onClick={() => clearFilterSearch()} />
+            </Link>
+            <Link className="navLink" to="/about">
+              <InfoIcon onClick={() => clearFilterSearch()} />
             </Link>
           </>
         )}
