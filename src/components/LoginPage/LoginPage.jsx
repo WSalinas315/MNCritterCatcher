@@ -12,6 +12,11 @@ export default function LoginPage() {
 
       {/* Login form */}
       <LoginForm />
+
+      {/* copyright text */}
+      <div className='copyright'>
+        © Billy Salinas
+      </div>
     </div>
   );
 }

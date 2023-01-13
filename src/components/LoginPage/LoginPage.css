@@ -12,3 +12,10 @@ img {
   background-repeat: no-repeat;
   height:100vh;
 }
+
+.copyright{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+}
