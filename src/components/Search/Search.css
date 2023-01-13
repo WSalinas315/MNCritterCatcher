@@ -43,6 +43,12 @@ h3 {
   justify-content: center;
 }
 
+.fish-select {
+  display: flex;
+  padding-bottom: 30px;
+  justify-content: center;
+}
+
 .animal-icon {
   width: 40px;
   height: 40px;

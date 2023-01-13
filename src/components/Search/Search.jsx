@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Button } from '@mui/material';
 import { GiDuck, GiSquirrel } from 'react-icons/gi';
+import { IoFishSharp } from 'react-icons/io5';
 import './Search.css';
 
 export default function Search(props) {
@@ -40,6 +41,12 @@ export default function Search(props) {
     history.push('/search/mammals');
   }
 
+   // dispatch to update animal type in filterSearch reducer and move to speciesSelect page
+   const selectFish = () => {
+    dispatch({ type: 'SET_TYPE', payload: 'Fish' });
+    history.push('/search/fish');
+  }
+
   const selectBySearch = (species) => {
     dispatch({type:'SET_SELECTED', payload: species});
     console.log('SELECT BY SEARCH PARAM:', species);
@@ -71,6 +78,7 @@ export default function Search(props) {
       {/* Search via filters */}
       <div className='filter-select'>
         <h3>or select an animal type:</h3>
+
         {/* Bird search button */}
         <div className='bird-select'>
           <GiDuck className='animal-icon' />
@@ -81,6 +89,7 @@ export default function Search(props) {
             Birds
           </Button>
         </div>
+
         {/* Mammal search button */}
         <div className='mammal-select'>
           <GiSquirrel className='animal-icon' />
@@ -91,6 +100,17 @@ export default function Search(props) {
             Mammals
           </Button>
         </div>
+
+        <div className='fish-select'>
+          <IoFishSharp className='animal-icon' />
+          <Button
+            variant="contained"
+            onClick={() => selectFish()}
+            sx={{ width:"125px"}}>
+            Fish
+          </Button>
+        </div>
+
       </div>
     </div>
   );
