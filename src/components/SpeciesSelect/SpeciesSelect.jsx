@@ -13,7 +13,9 @@ export default function SpeciesSelect(props) {
 
   // fetches subtypes from database
   useEffect(() => {
+    // if(!subtypes){
     dispatch({ type: 'FETCH_SUBTYPES', payload: props.type })
+    // }
   }, []);
 
   // Initialize history
