@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ToggleButton from '@mui/material/ToggleButton';
 import PublicIcon from '@mui/icons-material/Public';
-import { TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import { FiPlus } from 'react-icons/fi';
 import {BsSliders} from 'react-icons/bs';
-import InputAdornment from '@mui/material/InputAdornment';
 import '../SightingList/SightingList';
 import './Sightings.css';
 import SightingList from '../SightingList/SightingList';
@@ -61,24 +57,7 @@ export default function Sightings(props) {
           </ToggleButton>
         </div>
 
-        {/* Search field */}
-        {/* <div className='sightings-search'>
-          <TextField
-            value={sightingFilter}
-            fullWidth
-            variant="outlined"
-            placeholder='Search Sightings'
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            onChange={(event) => setSightingFilter(event.target.value)}
-            sx={{ margin: "10px 15px" }}
-          />
-        </div> */}
+        {/* Filters button */}
         <div className='toggle-btn'>
           <ToggleButton
             value="check"
@@ -90,11 +69,6 @@ export default function Sightings(props) {
             <BsSliders /> Filters
           </ToggleButton>
         </div>
-
-        {/* Add sighting button */}
-        {/* <div className='add-icon-container' onClick={() => history.push('/sightings/add')}>
-          <FiPlus className='sightings-add-icon' />
-        </div> */}
       </div>
 
       {/* Scrollable sighting feed */}
