@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 const sighting = (state = [], action) => {
   switch (action.type) {
     // Clear reducer data
@@ -11,4 +13,18 @@ const sighting = (state = [], action) => {
   }
 };
 
-export default sighting;
+const visibility = (state = false, action) => {
+  switch (action.type) {
+    // set true
+    case 'SET_VISIBILITY_PUBLIC':
+      return true;
+    // set false
+    case 'SET_VISIBILITY_SELF':
+      return false;
+    // default
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ sighting, visibility });

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ToggleButton from '@mui/material/ToggleButton';
 import PublicIcon from '@mui/icons-material/Public';
-import {BsSliders} from 'react-icons/bs';
+import { BsSliders } from 'react-icons/bs';
 import '../SightingList/SightingList';
 import './Sightings.css';
 import SightingList from '../SightingList/SightingList';
@@ -12,10 +12,10 @@ export default function Sightings(props) {
 
   // Initialize user data from store
   const user = useSelector(store => store.user);
+  const publicToggle = useSelector(store => store.sighting.visibility);
 
   // Initialize local state
-  const [sightingFilter, setSightingFilter] = useState('');
-  const [publicToggle, setPublicToggle] = useState(false);
+  // const [sightingFilter, setSightingFilter] = useState('');
 
   // Initialize history
   const history = useHistory();
@@ -23,20 +23,27 @@ export default function Sightings(props) {
   // Initialize dispatch
   const dispatch = useDispatch();
 
-  // fetches sightings from database
+  // fetches sightings from database depending on if public sightings is toggled on/off
   useEffect(() => {
-    dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id })
+    if (publicToggle == false) {
+      dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id })
+    } else {
+      dispatch({ type: 'FETCH_PUBLIC_SIGHTINGS', payload: user.id })
+    }
+
   }, []);
 
+  // Toggles sighting.visibility reducer's state and fetches public/private sightings lists
   const toggleVisibility = () => {
-    if (publicToggle == false) {
+    if (publicToggle == false) { // here
       console.log('executing public dispatch');
       dispatch({ type: 'FETCH_PUBLIC_SIGHTINGS' });
+      dispatch({ type: 'SET_VISIBILITY_PUBLIC' });
     } else {
       console.log('executing private dispatch');
       dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id });
+      dispatch({ type: 'SET_VISIBILITY_SELF' });
     }
-    setPublicToggle(!publicToggle);
   }
 
   return (
@@ -50,7 +57,7 @@ export default function Sightings(props) {
             value="check"
             color="info"
             selected={publicToggle}
-            onChange={() => toggleVisibility()}
+            onChange={() => toggleVisibility()} // here
             sx={{ height: "56px", width: "56" }}
           >
             <PublicIcon /> Public Sightings
@@ -62,8 +69,6 @@ export default function Sightings(props) {
           <ToggleButton
             value="check"
             color="info"
-            // selected={publicToggle}
-            // onChange={() => toggleVisibility()}
             sx={{ height: "56px", width: "56" }}
           >
             <BsSliders /> Filters

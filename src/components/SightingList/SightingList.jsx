@@ -7,7 +7,7 @@ import './SightingList.css';
 export default function SightingList(props) {
 
   // Initialize sightings data from store
-  const sightings = useSelector(store => store.sighting);
+  const sightings = useSelector(store => store.sighting.sighting);
   const user = useSelector(store => store.user);
 
   return (
