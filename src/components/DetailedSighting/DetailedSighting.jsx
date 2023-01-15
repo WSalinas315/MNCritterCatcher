@@ -16,7 +16,7 @@ export default function DetailedSighting(props) {
   const user = useSelector(store => store.user);
 
   // Local state for Modal
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -64,7 +64,6 @@ export default function DetailedSighting(props) {
     boxShadow: 24,
     p: 4,
   };
-
 
   return (
     <div className='detailed-page-body'>
