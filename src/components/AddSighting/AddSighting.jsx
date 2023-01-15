@@ -158,6 +158,12 @@ export default function AddSighting(props) {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
+  // Function for closing upload modal
+  const closeModal = () => {
+    setUpload(true);
+    handleClose();
+  }
+
   return (
     <div className='add-body'>
       {/* Page Head */}
@@ -202,7 +208,7 @@ export default function AddSighting(props) {
                     <input type="submit" value="Upload" />
                   </div>
                 </form>
-                <Button variant='outlined' onClick={() => handleClose()} sx={{ marginLeft: "70%" }}>Close</Button>
+                <Button variant='outlined' onClick={() => closeModal()} sx={{ marginLeft: "70%" }}>Close</Button>
               </Box>
             </Modal>
           </>}
