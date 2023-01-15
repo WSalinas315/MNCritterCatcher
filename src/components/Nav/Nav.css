@@ -5,7 +5,10 @@
   align-items: center;
 
   /* margin: 0 0 30px; */
-  background-color: #00acb0;
+  background-color: #3d8642;
+  /* background-color: #1c7b04; */
+  /* background-color: #588157; */
+  /* background-color: #427e17; */
   overflow: hidden;
   width: 100%;
   position: fixed;
@@ -27,7 +30,10 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #3d8642;
+  /* background-color: #1c7b04; */
+  /* background-color: #588157; */
+  /* background-color: #427e17; */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -41,5 +47,5 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #2B6035;
 }

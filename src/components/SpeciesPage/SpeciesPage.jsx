@@ -60,7 +60,7 @@ export default function SpeciesPage(props) {
 
       {/* Add sighting button */}
       <div className='sighting-btn'>
-        <Button variant='contained' onClick={() => addSighting()}>Add Sighting</Button>
+        <Button variant='contained' onClick={() => addSighting()} sx={{backgroundColor: "#1EA1C9"}}>Add Sighting</Button>
       </div>
     </div>
   );

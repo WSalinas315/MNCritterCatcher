@@ -4,11 +4,9 @@ import './Nav.css';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
 import InfoIcon from '@mui/icons-material/Info';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 function Nav() {
 

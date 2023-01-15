@@ -134,12 +134,12 @@ export default function SpeciesSelect(props) {
             <Button 
               variant='contained'
               onClick={() => history.push(`/reference/${species}`)}
-              sx={{ width: "140px" }}
+              sx={{ width: "140px", backgroundColor: "#1EA1C9" }}
             >
               View Entry
             </Button>
             :
-            <Button disabled variant='contained' sx={{ width: "140px" }}>View Entry</Button>
+            <Button disabled variant='contained' sx={{ width: "140px", backgroundColor: "#1EA1C9" }}>View Entry</Button>
           }
         </Box>
       </div>

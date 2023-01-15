@@ -69,11 +69,11 @@ export default function DetailedSighting(props) {
     <div className='detailed-page-body'>
       <div className='detail-button-menu'>
         {/* Go Back Button */}
-        <Button variant='contained' sx={{ margin: "20px" }} onClick={() => history.goBack()}>Back</Button>
+        <Button variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9" }} onClick={() => history.goBack()}>Back</Button>
 
         {/* Delete button that only renders if you're viewing your own post */}
         {user.id == sighting.user_id ?
-          <><Button variant='contained' sx={{ margin: "20px" }} onClick={() => handleOpen()}>Delete</Button>
+          <><Button variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9" }} onClick={() => handleOpen()}>Delete</Button>
           {/* Modal to verify user wants to delete the post */}
             <Modal
               open={open}

@@ -32,6 +32,7 @@ function AboutPage() {
         PostgreSQL <br />
         Material UI <br />
         Multer Image Upload<br />
+        Passport
 
       </div>
     </div>
