@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 import CircularProgress from '@mui/material/CircularProgress';
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import './DetailedSighting.css';
@@ -11,6 +14,11 @@ export default function DetailedSighting(props) {
   // Initialize sightings data from store
   const sighting = useSelector(store => store.detailed);
   const user = useSelector(store => store.user);
+
+  // Local state for Modal
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // Initialize dispatch
   const dispatch = useDispatch();
@@ -44,6 +52,19 @@ export default function DetailedSighting(props) {
     )
   }
 
+  // Modal style
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 
   return (
     <div className='detailed-page-body'>
@@ -53,7 +74,24 @@ export default function DetailedSighting(props) {
 
         {/* Delete button that only renders if you're viewing your own post */}
         {user.id == sighting.user_id ?
-          <Button variant='contained' sx={{ margin: "20px" }} onClick={() => deleteSighting()}>Delete</Button>
+          <><Button variant='contained' sx={{ margin: "20px" }} onClick={() => handleOpen()}>Delete</Button>
+          {/* Modal to verify user wants to delete the post */}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="delete-sighting-modal"
+              >
+              <Box sx={style}>
+                <Typography id="delete-sighting-modal" variant="h6" component="h2">
+                  Are you sure you want to delete this sighting?
+                </Typography>
+                <br />
+                {/* Cancel Button */}
+                <Button variant='outlined' sx={{marginLeft: "40px"}} onClick={() => handleClose()}>Cancel</Button>
+                {/* Delete button */}
+                <Button variant='contained' sx={{marginLeft: "50px"}} color="error" onClick={() => deleteSighting()}>Delete</Button>
+              </Box>
+            </Modal></>
           :
           <></>
         }
