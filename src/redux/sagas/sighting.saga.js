@@ -48,7 +48,18 @@ function* deleteSighting(action) {
 function* fetchCount(action) {
   try {
     const count = yield axios.get(`/api/sighting/count/${action.payload}`);
-    yield put({ type: 'SET_COUNT', payload: count.data[0].sighting_count });
+    // yield put({ type: 'SET_COUNT', payload: count.data[0].sighting_count });
+    yield put({ type: 'SET_COUNT', payload: count.data[0] });
+  } catch (error) {
+    console.log('GET sightings error:', error);
+  }
+}
+
+// Fetch sighting counts for each animal type for signed in user from database and assign to sightingCount reducer
+function* fetchAnimalCounts(action) {
+  try {
+    const counts = yield axios.get(`/api/sighting/animalcounts/${action.payload}`);
+    yield put({ type: 'SET_ANIMAL_COUNTS', payload: counts.data });
   } catch (error) {
     console.log('GET sightings error:', error);
   }
@@ -69,6 +80,7 @@ function* sighting() {
   yield takeLatest('FETCH_SIGHTINGS', fetchSightings);
   yield takeLatest('DELETE_SIGHTING', deleteSighting);
   yield takeLatest('FETCH_COUNT', fetchCount);
+  yield takeLatest('FETCH_ANIMAL_COUNTS', fetchAnimalCounts);
   yield takeLatest('FETCH_DETAILED_SIGHTING', fetchDetailed);
   yield takeLatest('FETCH_PUBLIC_SIGHTINGS', fetchPublic);
 }
