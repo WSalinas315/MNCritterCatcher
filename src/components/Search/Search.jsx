@@ -91,7 +91,7 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectBirds()}
-            sx={{ width: "200px" }}>
+            sx={{ width: "220px" }}>
             Birds
           </Button>
         </div>
@@ -102,7 +102,7 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectMammals()}
-            sx={{ width: "200px" }}>
+            sx={{ width: "220px" }}>
             Mammals
           </Button>
         </div>
@@ -112,7 +112,7 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectFish()}
-            sx={{ width: "200px" }}>
+            sx={{ width: "220px" }}>
             Fish
           </Button>
         </div>
@@ -122,8 +122,8 @@ export default function Search(props) {
           <Button
             variant="contained"
             onClick={() => selectReptiles()}
-            sx={{ width: "200px" }}>
-            Reptiles/Amphibians
+            sx={{ width: "220px" }}>
+            Reptiles & Amphibians
           </Button>
         </div>
 

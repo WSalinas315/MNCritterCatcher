@@ -54,7 +54,7 @@ router.delete('/:id', (req, res) => {
   console.log('In server router DELETE');
   let sightingID = req.params.id;
   let deleteQuery = `DELETE FROM "sighting" WHERE "id" = $1;`;
-  pool.query(deleteQuery, [sightingID]).then((result)=> {
+  pool.query(deleteQuery, [sightingID]).then((result) => {
     res.sendStatus(200);
   }).catch((error) => {
     console.log('Error deleting sighting', sightingID, ':', error);
@@ -81,11 +81,40 @@ router.get('/count/:id', (req, res) => {
   console.log('In sighting router count GET');
   let userID = req.params.id;
   console.log('User ID in count GET is:', userID);
-  let sightingsQuery = `SELECT COUNT(*) AS "sighting_count" FROM "sighting" WHERE "user_id" = $1;`;
+  let sightingsQuery = `SELECT COUNT(*) AS "sighting_count", COUNT(DISTINCT "animal_id") AS "unique_count" FROM "sighting" 
+                        WHERE "user_id" = $1;`;
   pool.query(sightingsQuery, [userID]).then((result) => {
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error retrieving sightings for user', userID, ':', error);
+    res.sendStatus(500);
+  });
+});
+
+/* GET a count of all animal type sightings for a user from the database */
+router.get('/animalcounts/:id', (req, res) => {
+  console.log('In sighting router animal counts GET');
+  let userID = req.params.id;
+  console.log('User ID in animal counts GET is:', userID);
+  let sightingsQuery = `SELECT "animal"."type", count(*) FROM "sighting"
+                        JOIN "animal" ON "animal"."id" = "sighting"."animal_id"
+                        WHERE "user_id" = $1 GROUP BY "animal"."type";`;
+  pool.query(sightingsQuery, [userID]).then((result) => {
+    // Initialize object to send
+    let fullResult = {
+      Mammal: 0,
+      Bird: 0,
+      Reptile: 0,
+      Fish: 0
+    }
+    // Populated fullResult object data
+    for (let row of result.rows) {
+      fullResult[row.type] = row.count;
+    }
+    // Send fullResult back to client
+    res.send(fullResult);
+  }).catch((error) => {
+    console.log('Error retrieving animal counts for user', userID, ':', error);
     res.sendStatus(500);
   });
 });

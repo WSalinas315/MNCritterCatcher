@@ -57,7 +57,7 @@ export default function Sightings(props) {
             onChange={() => toggleVisibility()}
             sx={{ height: "56px", width: "56" }}
           >
-            <PublicIcon />
+            <PublicIcon /> Public Sightings
           </ToggleButton>
         </div>
 
@@ -83,18 +83,18 @@ export default function Sightings(props) {
           <ToggleButton
             value="check"
             color="info"
-            selected={publicToggle}
+            // selected={publicToggle}
             // onChange={() => toggleVisibility()}
             sx={{ height: "56px", width: "56" }}
           >
-            <BsSliders />
+            <BsSliders /> Filters
           </ToggleButton>
         </div>
 
         {/* Add sighting button */}
-        <div className='add-icon-container' onClick={() => history.push('/sightings/add')}>
+        {/* <div className='add-icon-container' onClick={() => history.push('/sightings/add')}>
           <FiPlus className='sightings-add-icon' />
-        </div>
+        </div> */}
       </div>
 
       {/* Scrollable sighting feed */}

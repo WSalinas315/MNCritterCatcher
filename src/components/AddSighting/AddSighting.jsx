@@ -13,6 +13,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CircularProgress from '@mui/material/CircularProgress';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 import './AddSighting.css';
 
 export default function AddSighting(props) {
@@ -44,9 +47,28 @@ export default function AddSighting(props) {
   const date = new Date().toISOString().slice(0, 10);
   const [locationClick, setLocationClick] = useState(false);
 
-  // POST sighting when Submit button is clicked and direct to sightings feed
-  const submitSighting = () => {
+  // Local state for Modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [upload, setUpload] = useState(false);
 
+  // Modal style
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  // POST sighting when Submit button is clicked and direct to sightings feed
+  // Conditional rendering depending on if an image is being posted or not
+  const submitSighting = () => {
     {
       image ?
         dispatch({
@@ -136,6 +158,12 @@ export default function AddSighting(props) {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
+  // Function for closing upload modal
+  const closeModal = () => {
+    setUpload(true);
+    handleClose();
+  }
+
   return (
     <div className='add-body'>
       {/* Page Head */}
@@ -153,17 +181,37 @@ export default function AddSighting(props) {
       {/* Form fields for adding a new sighting */}
       <div className='sighting-form'>
 
-        {/* Image Upload */}
-        <form method="POST" action="/post-photo-upload" encType="multipart/form-data" id="uploadTest">
-          <div>
-            <label>Upload Photo</label>
-            <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()} />
-            {/* <input type="file" name="photo-upload" onChange={() => {setImage(name.value)}} /> */}
-          </div>
-          <div>
-            <input type="submit" value="Upload" />
-          </div>
-        </form>
+        {upload ?
+          <Button variant='contained' color='success' startIcon={<CheckCircleIcon />}>Upload Complete</Button>
+          :
+          <>
+            {/* Upload Button to launch modal */}
+            <Button variant='contained' onClick={() => handleOpen()} startIcon={<AddAPhotoIcon />}>Upload Image</Button>
+            {/* Modal to handle image uploads */}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="upload-photo-modal"
+            >
+              {/* Modal contents */}
+              <Box sx={style}>
+                {/* Image Upload */}
+                <form method="POST" action="/post-photo-upload" encType="multipart/form-data" id="uploadTest">
+                  <div>
+                    <label>Upload Photo</label>
+                    <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()} />
+                    {/* <input type="file" name="photo-upload" onChange={() => {setImage(name.value)}} /> */}
+                  </div>
+                  <div>
+                    {/* <div onClick={() => setUpload(true)}> */}
+                    {/* <input type="submit" value="Upload" onClick={() => uploadClick()} /> */}
+                    <input type="submit" value="Upload" />
+                  </div>
+                </form>
+                <Button variant='outlined' onClick={() => closeModal()} sx={{ marginLeft: "70%" }}>Close</Button>
+              </Box>
+            </Modal>
+          </>}
 
         {/* Caption */}
         <FormControl>
@@ -199,6 +247,8 @@ export default function AddSighting(props) {
             >
               <MenuItem value={'Bird'}>Bird</MenuItem>
               <MenuItem value={'Mammal'}>Mammal</MenuItem>
+              <MenuItem value={'Fish'}>Fish</MenuItem>
+              <MenuItem value={'Reptile'}>Reptile & Amphibian</MenuItem>
             </Select>}
         </FormControl>
 

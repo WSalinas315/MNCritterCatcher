@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
 import { FiEdit, FiInfo } from 'react-icons/fi';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import { Card } from '@mui/material';
 import './ProfilePage.css';
 
 
@@ -17,11 +18,13 @@ export default function ProfilePage(props) {
 
   // Pull user and sightings information from store
   const user = useSelector((store) => store.user);
-  const count = useSelector((store) => store.sightingCount);
+  const count = useSelector((store) => store.sightingCount.sightingCount);
+  const animalCount = useSelector((store) => store.sightingCount.animalCounts);
 
   // fetches sighting count from database
   useEffect(() => {
-    dispatch({ type: 'FETCH_COUNT', payload: user.id })
+    dispatch({ type: 'FETCH_COUNT', payload: user.id });
+    dispatch({ type: 'FETCH_ANIMAL_COUNTS', payload: user.id });
   }, []);
 
   return (
@@ -52,14 +55,30 @@ export default function ProfilePage(props) {
       {/* Username */}
       <h1>{user.username}</h1>
 
+
+      <h2>Sighting Counts</h2>
+      <Card sx={{backgroundColor: 'teal', m: '7%', textAlign: 'left'}}>
       {/* Sightings Count */}
-      <h2>Sightings: {count}</h2>
+      <h3>Total : {count.sighting_count}</h3>
 
-      {/* Challenges Count (Stretch) */}
-      {/* <h2>Challenges Completed: </h2> */}
+      {/* Unique Sightings Count */}
+      <h3> Unique : {count.unique_count}</h3>
+      </Card>
 
-      {/* Badges Display Case (Stretch) */}
+      <Card sx={{backgroundColor: 'gray', m: '7%', textAlign: 'left'}}>
 
+        {/* Mammal Sightings Count */}
+        <h3> Mammals: {animalCount.Mammal}</h3>
+
+        {/* Bird Sightings Count */}
+        <h3> Birds: {animalCount.Bird}</h3>
+
+        {/* Bird Sightings Count */}
+        <h3> Fish: {animalCount.Fish}</h3>
+
+        {/* Bird Sightings Count */}
+        <h3> Reptiles & Amphibians: {animalCount.Reptile}</h3>
+      </Card>
     </div>
   );
 }
