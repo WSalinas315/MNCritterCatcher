@@ -199,6 +199,8 @@ export default function AddSighting(props) {
             >
               <MenuItem value={'Bird'}>Bird</MenuItem>
               <MenuItem value={'Mammal'}>Mammal</MenuItem>
+              <MenuItem value={'Fish'}>Fish</MenuItem>
+              <MenuItem value={'Reptile'}>Reptile & Amphibian</MenuItem>
             </Select>}
         </FormControl>
 

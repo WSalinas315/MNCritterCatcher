@@ -24,7 +24,7 @@ export default function DetailedSighting(props) {
     history.push('/sightings');
   }
 
-  // const { isLoaded } = useLoadScript({
+  // Google Maps API request
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -32,15 +32,14 @@ export default function DetailedSighting(props) {
 
   // Map rendering with Marker
   function Map() {
-    // console.log('Coords:', 'lat', +sighting.location_lat, 'long:', +sighting.location_long);
     return (
       <GoogleMap
         zoom={12}
         center={{ lat: +sighting.location_lat, lng: +sighting.location_long }}
-        mapContainerStyle={{width: '100%', height: '250px'}}
+        mapContainerStyle={{ width: '100%', height: '250px' }}
         mapContainerClassName="map-container"
       >
-        <MarkerF position={{lat: +sighting.location_lat, lng: +sighting.location_long}} />
+        <MarkerF position={{ lat: +sighting.location_lat, lng: +sighting.location_long }} />
       </GoogleMap>
     )
   }
@@ -70,7 +69,7 @@ export default function DetailedSighting(props) {
 
         {/* Image */}
         <div className='detail-sighting-image'>
-          <img src={sighting.image}/>
+          <img src={sighting.image} />
         </div>
 
         {/* Caption */}
