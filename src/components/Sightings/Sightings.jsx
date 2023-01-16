@@ -54,7 +54,7 @@ export default function Sightings(props) {
             value="check"
             color="info"
             selected={publicToggle}
-            onChange={() => toggleVisibility()} // here
+            onChange={() => toggleVisibility()}
             sx={{ height: "56px", width: "56" }}
           >
             <PublicIcon /> Public Sightings
