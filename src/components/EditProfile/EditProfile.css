@@ -15,3 +15,11 @@
 .current-photo{
   margin-bottom: 20px;
 }
+
+.exit-btn{
+  text-align: left;
+}
+
+.no-top-margin{
+  margin-top: 0px;
+}

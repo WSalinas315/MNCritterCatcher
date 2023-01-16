@@ -40,14 +40,16 @@ export default function EditProfile(props) {
   return (
     <div className='edit-profile-body'>
       {/* Page Head */}
-      <div className='ref-menu'>
+      <div className=''>
 
         {/* Close Button */}
-        <IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius: "4px", color: "white", boxShadow: "1" }} onClick={() => history.goBack()}><CloseIcon /></IconButton>
+        <div className='exit-btn'>
+          <IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius: "4px", color: "white", boxShadow: "1" }} onClick={() => history.goBack()}><CloseIcon /></IconButton>
+        </div>
 
         {/* Page Title */}
-        <div className='ref-page-title'>
-          <h1>Edit Profile</h1>
+        <div>
+          <h1 className='no-top-margin'>Edit Profile</h1>
         </div>
       </div>
 
