@@ -1,0 +1,34 @@
+.about-center{
+  text-align: center;
+}
+
+.contacts{
+  display: flex;
+}
+
+.vertical-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.contact-icon{
+  width: 30px;
+  height: 30px;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.tech-list{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 15px;
+}
+
+.bold{
+  font-weight: bold;
+}
