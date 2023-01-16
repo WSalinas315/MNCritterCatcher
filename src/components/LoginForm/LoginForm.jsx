@@ -12,6 +12,7 @@ function LoginForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Login function
   const login = (event) => {
     event.preventDefault();
     if (username && password) {
@@ -34,17 +35,8 @@ function LoginForm() {
           {errors.loginMessage}
         </h3>
       )}
-      {/* <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)} />
-        </label>
-      </div> */}
+
+      {/* Username field */}
       <div>
         <TextField required
           fullWidth
@@ -55,17 +47,8 @@ function LoginForm() {
           style={{ background: 'white' }}
         />
       </div>
-      {/* <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)} />
-        </label>
-      </div> */}
+
+      {/* Password field */}
       <div>
         <TextField required
           fullWidth
@@ -77,12 +60,12 @@ function LoginForm() {
           style={{ background: 'white' }}
         />
       </div>
-      {/* <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div> */}
+
+      {/* Login Button */}
       <div>
         <Button variant="contained" type="submit" color="success">Log In</Button>
       </div>
+
       {/* Registration Link */}
       <center>
         <button
@@ -91,7 +74,6 @@ function LoginForm() {
           onClick={() => {history.push('/registration')}}>
           Register New Account
         </button>
-        {/* <Button variant="text" onClick={() => {history.push('/registration')}}>Register New Account</Button> */}
       </center>
     </form>
   );
