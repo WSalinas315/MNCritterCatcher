@@ -86,7 +86,7 @@ export default function DetailedSighting(props) {
                 </Typography>
                 <br />
                 {/* Cancel Button */}
-                <Button variant='outlined' sx={{marginLeft: "40px"}} onClick={() => handleClose()}>Cancel</Button>
+                <Button variant='outlined' sx={{marginLeft: "40px", color: "#1EA1C9"}} onClick={() => handleClose()}>Cancel</Button>
                 {/* Delete button */}
                 <Button variant='contained' sx={{marginLeft: "50px"}} color="error" onClick={() => deleteSighting()}>Delete</Button>
               </Box>

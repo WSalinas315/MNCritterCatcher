@@ -167,13 +167,13 @@ export default function AddSighting(props) {
   return (
     <div className='add-body'>
       {/* Page Head */}
-      <div className='ref-menu'>
+      <div className='add-top-menu'>
         {/* Close Button */}
-        <div className='ref-menu-icon-container' onClick={() => xButton()}>
+        {autofill ? <div className='ref-menu-icon-container' onClick={() => xButton()}>
           <FiX className='ref-menu-icon' />
-        </div>
+        </div> : <></>}
         {/* Species Name */}
-        <div className='ref-page-title'>
+        <div>
           <h1>Add A Sighting</h1>
         </div>
       </div>
@@ -186,7 +186,7 @@ export default function AddSighting(props) {
           :
           <>
             {/* Upload Button to launch modal */}
-            <Button variant='contained' onClick={() => handleOpen()} startIcon={<AddAPhotoIcon />}>Upload Image</Button>
+            <Button variant='contained' onClick={() => handleOpen()} startIcon={<AddAPhotoIcon />} sx={{backgroundColor: "#1EA1C9"}}>Upload Image</Button>
             {/* Modal to handle image uploads */}
             <Modal
               open={open}
@@ -200,11 +200,10 @@ export default function AddSighting(props) {
                   <div>
                     <label>Upload Photo</label>
                     <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()} />
-                    {/* <input type="file" name="photo-upload" onChange={() => {setImage(name.value)}} /> */}
                   </div>
                   <div>
-                    {/* <div onClick={() => setUpload(true)}> */}
-                    {/* <input type="submit" value="Upload" onClick={() => uploadClick()} /> */}
+                  {/* <div onClick={() => setUpload(true)}> */}
+                    {/* <input type="submit" value="Upload" onClick={() => setUpload(true)} /> */}
                     <input type="submit" value="Upload" />
                   </div>
                 </form>
@@ -369,7 +368,7 @@ export default function AddSighting(props) {
         {/* GeoLocation Tagging with conditional rendering*/}
         {locationClick == false
           ?
-          <Button variant='contained' startIcon={<AddLocationAltIcon />} onClick={() => findLocation()}>Tag Your Location</Button>
+          <Button variant='contained' startIcon={<AddLocationAltIcon />} sx={{backgroundColor: "#1EA1C9"}} onClick={() => findLocation()}>Tag Your Location</Button>
           :
           latitude
             ?
@@ -390,7 +389,7 @@ export default function AddSighting(props) {
           {autofill == true ?
             <Button
               variant='contained'
-              sx={{ width: "140px" }}
+              sx={{ width: "140px", backgroundColor: "#1EA1C9" }}
               onClick={() => submitSighting()}
             >
               Submit
@@ -399,7 +398,7 @@ export default function AddSighting(props) {
             species ?
               <Button
                 variant='contained'
-                sx={{ width: "140px" }}
+                sx={{ width: "140px", backgroundColor: "#1EA1C9" }}
                 onClick={() => submitSighting()}
               >
                 Submit
