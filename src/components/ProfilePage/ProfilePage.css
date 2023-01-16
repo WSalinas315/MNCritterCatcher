@@ -20,7 +20,7 @@
 
 .menu-icon-container{
   width: 20%;
-  background-color: #00acb0;
+  background-color: #1EA1C9;
   margin: 10px 15px;
   display: flex;
   align-items: center;
@@ -36,3 +36,6 @@
   width: 60%;
 }
 
+#sighting-counts{
+  text-decoration: underline;
+}

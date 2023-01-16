@@ -40,10 +40,7 @@ export default function ProfilePage(props) {
         <div className='page-title'>
           <h1>Profile</h1>
         </div>
-        {/* About */}
-        {/* <div className='menu-icon-container' onClick={() => history.push('/about')}>
-          <FiInfo className='menu-icon' />
-        </div> */}
+        {/* Logout button */}
         <LogOutButton className="btn" />
       </div>
 
@@ -55,17 +52,18 @@ export default function ProfilePage(props) {
       {/* Username */}
       <h1>{user.username}</h1>
 
+      {/* Sighting Count Title */}
+      <h2 id='sighting-counts'>Sighting Counts</h2>
 
-      <h2>Sighting Counts</h2>
-      <Card sx={{backgroundColor: 'teal', m: '7%', textAlign: 'left'}}>
-      {/* Sightings Count */}
-      <h3>Total : {count.sighting_count}</h3>
+      <Card sx={{ backgroundColor: '#1ea1c930', m: '7%', textAlign: 'left', padding: '10px' }}>
+        {/* Sightings Count */}
+        <h3>Total : {count.sighting_count}</h3>
 
-      {/* Unique Sightings Count */}
-      <h3> Unique : {count.unique_count}</h3>
+        {/* Unique Sightings Count */}
+        <h3> Unique : {count.unique_count}</h3>
       </Card>
 
-      <Card sx={{backgroundColor: 'gray', m: '7%', textAlign: 'left'}}>
+      <Card sx={{ backgroundColor: '#1ea1c930', m: '7%', textAlign: 'left', padding: '10px' }}>
 
         {/* Mammal Sightings Count */}
         <h3> Mammals: {animalCount.Mammal}</h3>
