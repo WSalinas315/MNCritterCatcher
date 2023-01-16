@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
 import { FiEdit, FiInfo } from 'react-icons/fi';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { Card } from '@mui/material';
 import './ProfilePage.css';
@@ -32,14 +34,15 @@ export default function ProfilePage(props) {
 
       {/* Page Title, Edit Button, About Button */}
       <div className='top-menu'>
+
         {/* Edit Profile */}
-        <div className='menu-icon-container' onClick={() => history.push('/profile/edit')}>
-          <FiEdit className='menu-icon' />
-        </div>
+        <IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius:"4px", color:"white", boxShadow:"1" }} onClick={() => history.push('/profile/edit')}><EditIcon /></IconButton>
+
         {/* Page Title */}
-        <div className='page-title'>
+        <div>
           <h1>Profile</h1>
         </div>
+
         {/* Logout button */}
         <LogOutButton className="btn" />
       </div>

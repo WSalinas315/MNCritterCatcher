@@ -16,24 +16,7 @@
 .top-menu{
   display: flex;
   margin-top: 5px;
-}
-
-.menu-icon-container{
-  width: 20%;
-  background-color: #1EA1C9;
-  margin: 10px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-icon{
-  width: 32px;
-  height: 32px;
-}
-
-.page-title{
-  width: 60%;
+  justify-content: space-between;
 }
 
 #sighting-counts{

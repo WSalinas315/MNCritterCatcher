@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 import Modal from '@mui/material/Modal';
 import CircularProgress from '@mui/material/CircularProgress';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import './DetailedSighting.css';
 
@@ -69,26 +73,26 @@ export default function DetailedSighting(props) {
     <div className='detailed-page-body'>
       <div className='detail-button-menu'>
         {/* Go Back Button */}
-        <Button variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9" }} onClick={() => history.goBack()}>Back</Button>
+        <IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius:"4px", color:"white", boxShadow:"1" }} onClick={() => history.goBack()}><CloseIcon /></IconButton>
 
         {/* Delete button that only renders if you're viewing your own post */}
         {user.id == sighting.user_id ?
-          <><Button variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9" }} onClick={() => handleOpen()}>Delete</Button>
-          {/* Modal to verify user wants to delete the post */}
+          <><IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius:"4px", color:"white", boxShadow:"1" }} onClick={() => handleOpen()}><DeleteIcon /></IconButton>
+            {/* Modal to verify user wants to delete the post */}
             <Modal
               open={open}
               onClose={handleClose}
               aria-labelledby="delete-sighting-modal"
-              >
+            >
               <Box sx={style}>
                 <Typography id="delete-sighting-modal" variant="h6" component="h2">
                   Are you sure you want to delete this sighting?
                 </Typography>
                 <br />
                 {/* Cancel Button */}
-                <Button variant='outlined' sx={{marginLeft: "40px", color: "#1EA1C9"}} onClick={() => handleClose()}>Cancel</Button>
+                <Button variant='outlined' sx={{ marginLeft: "40px", color: "#1EA1C9" }} onClick={() => handleClose()}>Cancel</Button>
                 {/* Delete button */}
-                <Button variant='contained' sx={{marginLeft: "50px"}} color="error" onClick={() => deleteSighting()}>Delete</Button>
+                <Button variant='contained' sx={{ marginLeft: "50px" }} color="error" onClick={() => deleteSighting()}>Delete</Button>
               </Box>
             </Modal></>
           :
@@ -96,27 +100,44 @@ export default function DetailedSighting(props) {
         }
       </div>
 
-      <div className='detailed-sighting'>
-
+      {/* <div className='detailed-sighting'> */}
+      <Card className='detailed-sighting' sx={{ backgroundColor: "lightgray", p: "15px" }}>
         {/* Animal Name */}
-        <h1>{sighting.name}</h1>
+        {/* <h1>{sighting.name}</h1> */}
+        <Typography variant="h4" component="div" sx={{textAlign:"center"}}>
+          {sighting.name}
+        </Typography>
 
         {/* Date Seen*/}
-        <h3>Date Seen: {sighting.date?.slice(0, 10)}</h3>
+        {/* <h3>Date Seen: {sighting.date?.slice(0, 10)}</h3> */}
+        <Typography variant="body1" component="div" sx={{textAlign:"center"}}>
+          {sighting.date?.slice(0, 10)}
+        </Typography>
 
         {/* Image */}
-        <div className='detail-sighting-image'>
-          <img src={sighting.image} />
-        </div>
+        <div>
+            <img src={sighting.image} className='detail-sighting-image' />
+          </div>
+        {/* <CardMedia
+          component="img"
+          // height="140"
+          image={sighting.image}
+        /> */}
 
         {/* Caption */}
-        <p>{sighting.caption}</p>
+        {/* <p>{sighting.caption}</p> */}
+        <CardContent>
+          <Typography variant="body3">
+            {sighting.caption}
+          </Typography>
+        </CardContent>
 
         {/* Google Map */}
         <div className='google-map'>
           {sighting.location_lat ? isLoaded ? <Map /> : <CircularProgress /> : <></>}
         </div>
-      </div>
+      </Card>
+      {/* </div> */}
     </div>
   );
 }
