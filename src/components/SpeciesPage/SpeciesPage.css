@@ -28,7 +28,11 @@
 
 .species-image{
   height: 220px;
-  width: 314px;
+  width: 322px;
   object-fit: cover;
   box-shadow: 1px 1px gray;
+  padding-top: 0px;
+  max-width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
 }

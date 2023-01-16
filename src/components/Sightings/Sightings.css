@@ -1,8 +1,5 @@
 .sightings-head{
-  /* display: flex; */
-  /* justify-content: space-between; */
   width: 100vw;
-  /* gap: 10px; */
   position: fixed;
   top: 0;
   z-index: 2;
@@ -13,26 +10,6 @@
 .sightings-body{
   display: flex;
   flex-direction: column;
-}
-
-.sightings-add-icon{
-  width: 32px;
-  height: 32px;
-}
-
-.add-icon-container{
-  width: 62px;
-  height: 62px;
-  background-color: #00acb0;
-  margin: 10px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: flex-end;
-}
-
-.sightings-search{
-  width: 52%;
 }
 
 .sightings-feed{

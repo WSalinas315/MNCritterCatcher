@@ -5,11 +5,15 @@
   position: relative;
 }
 
-img{
+.card-img{
   padding-top: 0px;
   max-width: 100%;
   border-radius: 5px;
   margin-top: 5px;
+  height: 220px;
+  width: 322px;
+  object-fit: cover;
+  box-shadow: 1px 1px gray;
 }
 
 .post-info{
@@ -17,8 +21,8 @@ img{
 }
 
 .profile-img-small{
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 50%;
   margin-right: 8px;
