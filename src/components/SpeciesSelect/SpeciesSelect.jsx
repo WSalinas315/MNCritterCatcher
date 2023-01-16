@@ -55,7 +55,7 @@ export default function SpeciesSelect(props) {
   return (
     <div className='species-select-body'>
       {/* Page Title */}
-      {props.type == 'Fish' ? <h1>Discover {props.type}</h1> : props.type == 'Reptile' ? <h1>Discover Reptiles and Amphibians</h1> : <h1>Discover {props.type}s</h1>}
+      {props.type == 'Fish' ? <h1 className='h1-center'>Discover {props.type}</h1> : props.type == 'Reptile' ? <h1 className='h1-center'>Discover Reptiles and Amphibians</h1> : <h1 className='h1-center'>Discover {props.type}s</h1>}
       <div className='input-fields'>
         
         {/* Animal Subtype Drop Down */}
