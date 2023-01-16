@@ -13,7 +13,7 @@ export default function Search(props) {
 
   // Initialize local state
   const [textSearch, setTextSearch] = useState('');
-  const [textInputSearch, setTextInputSearch] = useState('');
+  // const [textInputSearch, setTextInputSearch] = useState('');
 
   // Initialize history
   const history = useHistory();
@@ -53,6 +53,7 @@ export default function Search(props) {
     history.push('/search/reptile');
   }
 
+  // function for selecting an animal from the search box and directing to its detailed page
   const selectBySearch = (species) => {
     dispatch({ type: 'SET_SELECTED', payload: species });
     console.log('SELECT BY SEARCH PARAM:', species);
@@ -64,12 +65,12 @@ export default function Search(props) {
   return (
     <div className='search-body'>
       {/* Page Title */}
-      <h1>Discover Animals Around You</h1>
+      <h1 className='h1-center'>Discover Animals Around You</h1>
 
       {/* Search by text */}
       <div className='search-box'>
-        <h3>Begin searching with a keyword, e.g., duck</h3>
-        <Stack className='search-bar' spacing={2} sx={{ width: 250 }}>
+        <h3 className='h3-search-page'>Begin searching with a keyword, e.g., duck</h3>
+        <Stack className='margin-center' spacing={2} sx={{ width: 250 }}>
           <Autocomplete
             id="free-solo-demo"
             InputValue={textSearch}
@@ -83,7 +84,7 @@ export default function Search(props) {
 
       {/* Search via filters */}
       <div className='filter-select'>
-        <h3>or select an animal type:</h3>
+        <h3 className='h3-search-page'>or select an animal type:</h3>
 
         {/* Bird search button */}
         <div className='bird-select'>
@@ -107,6 +108,7 @@ export default function Search(props) {
           </Button>
         </div>
 
+        {/* Fish search button */}
         <div className='fish-select'>
           <IoFishSharp className='animal-icon' />
           <Button
@@ -117,6 +119,7 @@ export default function Search(props) {
           </Button>
         </div>
 
+        {/* Reptile & Amphibian search button */}
         <div className='reptile-select'>
           <GiSandSnake className='animal-icon' />
           <Button
