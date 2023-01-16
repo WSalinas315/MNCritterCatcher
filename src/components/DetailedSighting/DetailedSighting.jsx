@@ -77,7 +77,7 @@ export default function DetailedSighting(props) {
 
         {/* Delete button that only renders if you're viewing your own post */}
         {user.id == sighting.user_id ?
-          <><IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius:"4px", color:"white", boxShadow:"1" }} onClick={() => handleOpen()}><DeleteIcon /></IconButton>
+          <><IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#f44336", borderRadius:"4px", color:"white", boxShadow:"1" }} onClick={() => handleOpen()}><DeleteIcon /></IconButton>
             {/* Modal to verify user wants to delete the post */}
             <Modal
               open={open}
@@ -101,7 +101,7 @@ export default function DetailedSighting(props) {
       </div>
 
       {/* <div className='detailed-sighting'> */}
-      <Card className='detailed-sighting' sx={{ backgroundColor: "lightgray", p: "15px" }}>
+      <Card className='detailed-sighting' sx={{ backgroundColor: "lightgray", p: "15px", boxShadow: "2" }}>
         {/* Animal Name */}
         {/* <h1>{sighting.name}</h1> */}
         <Typography variant="h4" component="div" sx={{textAlign:"center"}}>

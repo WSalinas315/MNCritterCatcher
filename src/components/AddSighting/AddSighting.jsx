@@ -14,7 +14,8 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import Modal from '@mui/material/Modal';
 import './AddSighting.css';
 
@@ -167,13 +168,18 @@ export default function AddSighting(props) {
   return (
     <div className='add-body'>
       {/* Page Head */}
-      <div className='add-top-menu'>
-        {/* Close Button */}
-        {autofill ? <div className='ref-menu-icon-container' onClick={() => xButton()}>
-          <FiX className='ref-menu-icon' />
-        </div> : <></>}
-        {/* Species Name */}
-        <h1 className='h1-center'>Add A Sighting</h1>
+      <div>
+
+        {autofill ?
+          <>
+          {/* Close Button */}
+          <IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius: "4px", color: "white", boxShadow: "1" }} onClick={() => xButton()}><CloseIcon /></IconButton>
+          {/* Page Title */}
+          <h1 className='h1-center no-top-margin'>Add A Sighting</h1>
+          </>
+          :
+          <>{/* Page Title */}
+          <h1 className='h1-center'>Add A Sighting</h1></>}
       </div>
 
       {/* Form fields for adding a new sighting */}
@@ -184,7 +190,7 @@ export default function AddSighting(props) {
           :
           <>
             {/* Upload Button to launch modal */}
-            <Button variant='contained' onClick={() => handleOpen()} startIcon={<AddAPhotoIcon />} sx={{backgroundColor: "#1EA1C9"}}>Upload Image</Button>
+            <Button variant='contained' onClick={() => handleOpen()} startIcon={<AddAPhotoIcon />} sx={{ backgroundColor: "#1EA1C9" }}>Upload Image</Button>
             {/* Modal to handle image uploads */}
             <Modal
               open={open}
@@ -200,7 +206,7 @@ export default function AddSighting(props) {
                     <input type="file" name="photo-upload" id='photoUpload' onChange={() => fetchFormData()} />
                   </div>
                   <div>
-                  {/* <div onClick={() => setUpload(true)}> */}
+                    {/* <div onClick={() => setUpload(true)}> */}
                     {/* <input type="submit" value="Upload" onClick={() => setUpload(true)} /> */}
                     <input type="submit" value="Upload" />
                   </div>
@@ -366,7 +372,7 @@ export default function AddSighting(props) {
         {/* GeoLocation Tagging with conditional rendering*/}
         {locationClick == false
           ?
-          <Button variant='contained' startIcon={<AddLocationAltIcon />} sx={{backgroundColor: "#1EA1C9"}} onClick={() => findLocation()}>Tag Your Location</Button>
+          <Button variant='contained' startIcon={<AddLocationAltIcon />} sx={{ backgroundColor: "#1EA1C9" }} onClick={() => findLocation()}>Tag Your Location</Button>
           :
           latitude
             ?
@@ -406,6 +412,6 @@ export default function AddSighting(props) {
           }
         </Box>
       </div>
-    </div>
+    </div >
   );
 }

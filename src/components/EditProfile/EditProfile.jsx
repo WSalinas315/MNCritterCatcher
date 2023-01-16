@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
 import { Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import { BsPersonCircle } from 'react-icons/bs';
 import './EditProfile.css';
 
@@ -39,10 +41,10 @@ export default function EditProfile(props) {
     <div className='edit-profile-body'>
       {/* Page Head */}
       <div className='ref-menu'>
+
         {/* Close Button */}
-        <div className='ref-menu-icon-container' onClick={() => history.goBack()}>
-          <FiX className='ref-menu-icon' />
-        </div>
+        <IconButton variant='contained' sx={{ margin: "20px", backgroundColor: "#1EA1C9", borderRadius: "4px", color: "white", boxShadow: "1" }} onClick={() => history.goBack()}><CloseIcon /></IconButton>
+
         {/* Page Title */}
         <div className='ref-page-title'>
           <h1>Edit Profile</h1>
@@ -73,7 +75,7 @@ export default function EditProfile(props) {
         </form>
       </div>
 
-      <Button variant='contained' sx={{marginTop: "30px"}} onClick={() => updateProfile()}>Update</Button>
+      <Button variant='contained' sx={{ marginTop: "30px", backgroundColor: "#1EA1C9" }} onClick={() => updateProfile()}>Update</Button>
 
     </div>
   );

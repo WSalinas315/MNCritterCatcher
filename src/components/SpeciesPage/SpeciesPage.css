@@ -5,39 +5,30 @@
   /* text-align: center; */
 }
 
-.ref-menu{
-  display: flex;
-  margin-top: 5px;
-  width: 100%;
-}
-
-.ref-menu-icon-container{
-  width: 62px;
-  height: 62px;
-  background-color: #00acb0;
-  margin: 10px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ref-menu-icon{
-  width: 32px;
-  height: 32px;
-}
-
-.ref-page-title{
-  padding-right: 20px;
-  width: 65vw;
-  /* display: flex;
-  flex-direction: column;
-  height: 80px; */
-}
-
-.ref-img{
-  padding-top: 0px;
-}
-
 .ref-dimensions, .sighting-btn{
   text-align: center;
+}
+
+.scientific{
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+.no-top-margin{
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.species-card{
+  width: 82%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.species-image{
+  height: 220px;
+  width: 314px;
+  object-fit: cover;
+  box-shadow: 1px 1px gray;
 }

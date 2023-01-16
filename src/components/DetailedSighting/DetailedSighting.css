@@ -12,6 +12,7 @@
   height: 220px;
   width: 314px;
   object-fit: cover;
+  box-shadow: 1px 1px gray;
 }
 
 .detail-button-menu{

@@ -8,7 +8,7 @@ export default function LoginPage() {
   return (
     <div className="squirrel">
       {/* App logo */}
-      <img src={logo} />
+      <img id="login-logo" src={logo} />
 
       {/* Login form */}
       <LoginForm />
