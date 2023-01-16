@@ -14,9 +14,6 @@ export default function Sightings(props) {
   const user = useSelector(store => store.user);
   const publicToggle = useSelector(store => store.sighting.visibility);
 
-  // Initialize local state
-  // const [sightingFilter, setSightingFilter] = useState('');
-
   // Initialize history
   const history = useHistory();
 
@@ -65,7 +62,7 @@ export default function Sightings(props) {
         </div>
 
         {/* Filters button */}
-        <div className='toggle-btn'>
+        {/* <div className='toggle-btn'>
           <ToggleButton
             value="check"
             color="info"
@@ -73,12 +70,12 @@ export default function Sightings(props) {
           >
             <BsSliders /> Filters
           </ToggleButton>
-        </div>
+        </div> */}
       </div>
 
       {/* Scrollable sighting feed */}
       <div className='sightings-feed'>
-        <h1>Sightings</h1>
+        <h1 className='h1-center'>Sightings</h1>
         <SightingList />
       </div>
     </div>

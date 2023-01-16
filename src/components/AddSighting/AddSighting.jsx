@@ -173,9 +173,7 @@ export default function AddSighting(props) {
           <FiX className='ref-menu-icon' />
         </div> : <></>}
         {/* Species Name */}
-        <div>
-          <h1>Add A Sighting</h1>
-        </div>
+        <h1 className='h1-center'>Add A Sighting</h1>
       </div>
 
       {/* Form fields for adding a new sighting */}

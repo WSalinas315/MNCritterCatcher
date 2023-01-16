@@ -27,5 +27,6 @@
 
 .add-top-menu{
   display: flex;
+  flex-direction: column;
   width: 100vw;
 }

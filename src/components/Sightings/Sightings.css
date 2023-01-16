@@ -1,12 +1,13 @@
 .sightings-head{
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   width: 100vw;
-  gap: 10px;
+  /* gap: 10px; */
   position: fixed;
   top: 0;
   z-index: 2;
   background-color: white;
+  padding-bottom: 10px;
 }
 
 .sightings-body{
