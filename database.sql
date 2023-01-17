@@ -28,39 +28,40 @@ CREATE TABLE "animal" (
     "stock_image" VARCHAR (255) NOT NULL
 );
 
--- Challenge Table
-CREATE TABLE "challenge" (
-    "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR (255) UNIQUE NOT NULL,
-    "description" VARCHAR (255) NOT NULL,
-    "image" VARCHAR (255) NOT NULL,
-    "req_animals" INT NOT NULL
-);
-
--- Challenge_Animal Junction Table
-CREATE TABLE "challege_animal" (
-    "id" SERIAL PRIMARY KEY,
-    "animal_id" INT NOT NULL REFERENCES "animal",
-    "challenge_id" INT NOT NULL REFERENCES "challenge"
-);
-
 -- Sighting Junction Table
 CREATE TABLE "sighting" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT NOT NULL REFERENCES "user",
     "animal_id" INT NOT NULL REFERENCES "animal",
     "date" DATE NOT NULL,
-    "location" VARCHAR (512),
+    "location_lat" VARCHAR (32),
     "caption" VARCHAR (255),
     "image" VARCHAR (255),
-    "public" BOOLEAN NOT NULL
+    "public" BOOLEAN NOT NULL DEFAULT "false",
+    "location_long" VARCHAR (32)
 );
 
+-- Challenge Table
+-- CREATE TABLE "challenge" (
+--     "id" SERIAL PRIMARY KEY,
+--     "name" VARCHAR (255) UNIQUE NOT NULL,
+--     "description" VARCHAR (255) NOT NULL,
+--     "image" VARCHAR (255) NOT NULL,
+--     "req_animals" INT NOT NULL
+-- );
+
+-- Challenge_Animal Junction Table
+-- CREATE TABLE "challege_animal" (
+--     "id" SERIAL PRIMARY KEY,
+--     "animal_id" INT NOT NULL REFERENCES "animal",
+--     "challenge_id" INT NOT NULL REFERENCES "challenge"
+-- );
+
 -- Challenge_User Junction Table
-CREATE TABLE "challenge_user" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id" INT NOT NULL REFERENCES "user",
-    "challenge_id" INT NOT NULL REFERENCES "challenge",
-    "is_complete" BOOLEAN NOT NULL,
-    "sighting_num" INT NOT NULL
-);
+-- CREATE TABLE "challenge_user" (
+--     "id" SERIAL PRIMARY KEY,
+--     "user_id" INT NOT NULL REFERENCES "user",
+--     "challenge_id" INT NOT NULL REFERENCES "challenge",
+--     "is_complete" BOOLEAN NOT NULL,
+--     "sighting_num" INT NOT NULL
+-- );
