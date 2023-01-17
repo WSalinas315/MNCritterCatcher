@@ -34,6 +34,7 @@ export default function AddSighting(props) {
   const selected = useSelector(store => store.selectedAnimal);
   const autofill = useSelector(store => store.autofill);
   const user = useSelector(store => store.user);
+  const visBtnState = useSelector(store => store.sighting.visibility);
 
   // Initialize local state
   const [caption, setCaption] = useState('');
@@ -82,7 +83,8 @@ export default function AddSighting(props) {
             location_long: longitude,
             caption: caption,
             image: ('images/uploads/' + image),
-            public: visibility
+            public: visibility,
+            visBtnState: visBtnState
           }
         })
         :
@@ -95,7 +97,8 @@ export default function AddSighting(props) {
             date: date,
             location_lat: latitude,
             caption: caption,
-            public: visibility
+            public: visibility,
+            visBtnState: visBtnState
           }
         })
     }
