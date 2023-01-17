@@ -9,7 +9,7 @@ function* postSighting(action) {
       yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user_id });
     }
     else if (action.payload.visBtnState == true) {
-      yield put({ type: 'FETCH_PUBLIC_SIGHTINGS', payload: action.payload.user_id });
+      yield put({ type: 'FETCH_PUBLIC_SIGHTINGS' });
     }
     yield put({ type: 'SET_AUTOFILL_FALSE' });
     yield put({ type: 'FETCH_COUNT', payload: action.payload.user_id });
@@ -42,7 +42,12 @@ function* fetchPublic(action) {
 function* deleteSighting(action) {
   try {
     yield axios.delete(`/api/sighting/${action.payload.sighting}`);
-    yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user });
+    if (action.payload.visBtnState == false) {
+      yield put({ type: 'FETCH_SIGHTINGS', payload: action.payload.user });
+    }
+    else if (action.payload.visBtnState == true) {
+      yield put({ type: 'FETCH_PUBLIC_SIGHTINGS' });
+    }
     yield put({ type: 'FETCH_COUNT', payload: action.payload.user });
   } catch (error) {
     console.log('GET sightings error:', error);

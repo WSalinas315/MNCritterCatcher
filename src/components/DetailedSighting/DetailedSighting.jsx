@@ -18,6 +18,7 @@ export default function DetailedSighting(props) {
   // Initialize sightings data from store
   const sighting = useSelector(store => store.detailed);
   const user = useSelector(store => store.user);
+  const visBtnState = useSelector(store => store.sighting.visibility);
 
   // Local state for Modal
   const [open, setOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function DetailedSighting(props) {
 
   // function to delete the sighting and return to the sightings list
   const deleteSighting = () => {
-    dispatch({ type: 'DELETE_SIGHTING', payload: { sighting: sighting.id, user: user.id } });
+    dispatch({ type: 'DELETE_SIGHTING', payload: { sighting: sighting.id, user: user.id, visBtnState: visBtnState } });
     history.push('/sightings');
   }
 
