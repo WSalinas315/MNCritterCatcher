@@ -56,7 +56,7 @@ export default function Search(props) {
   // function for selecting an animal from the search box and directing to its detailed page
   const selectBySearch = (species) => {
     dispatch({ type: 'SET_SELECTED', payload: species });
-    console.log('SELECT BY SEARCH PARAM:', species);
+    // console.log('SELECT BY SEARCH PARAM:', species);
     setTextSearch(species);
     dispatch({ type: 'FETCH_ANIMAL_DATA', payload: species });
     history.push(`/reference/${species}`);

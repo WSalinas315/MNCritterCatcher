@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
                         JOIN "challenge_user" ON "challenge_user"."challenge_id" = "challenge"."id" 
                         WHERE "challenge_user"."user_id" = $1;`;
   pool.query(challengeQuery, [userID]).then((result) => {
-    console.log('RESULT HERE:', result);
+    // console.log('RESULT HERE:', result);
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error getting subtypes:', error);

@@ -33,11 +33,11 @@ export default function Sightings(props) {
   // Toggles sighting.visibility reducer's state and fetches public/private sightings lists
   const toggleVisibility = () => {
     if (publicToggle == false) { // here
-      console.log('executing public dispatch');
+      // console.log('executing public dispatch');
       dispatch({ type: 'FETCH_PUBLIC_SIGHTINGS' });
       dispatch({ type: 'SET_VISIBILITY_PUBLIC' });
     } else {
-      console.log('executing private dispatch');
+      // console.log('executing private dispatch');
       dispatch({ type: 'FETCH_SIGHTINGS', payload: user.id });
       dispatch({ type: 'SET_VISIBILITY_SELF' });
     }

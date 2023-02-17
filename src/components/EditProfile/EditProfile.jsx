@@ -23,10 +23,10 @@ export default function EditProfile(props) {
   const [profileImage, setProfileImage] = useState('');
 
   const updateProfile = () => {
-    console.log('Dispatching from edit profile');
-    console.log('Payload is:');
-    console.log('id:', user.id);
-    console.log('profile_image: images/uploads/' + profileImage);
+    // console.log('Dispatching from edit profile');
+    // console.log('Payload is:');
+    // console.log('id:', user.id);
+    // console.log('profile_image: images/uploads/' + profileImage);
     dispatch({ type: 'UPDATE_PROFILE', payload: { id: user.id, profile_image: ('images/uploads/' + profileImage) } });
     history.push('/profile');
   }

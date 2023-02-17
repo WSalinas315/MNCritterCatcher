@@ -41,7 +41,14 @@ A view of the add a sighting form filled out and ready to post.
 4. Import the `animal.csv` file into the 'animal' database table.
 5. From your terminal run `npm install`.
 6. Then run `npm run server` and `npm run client` within separate terminal instances. This should automatically open a window in your browser to the login page.
-7. For the best user experience, press `fn+F12` on your keyboard for Macs or `F12` for Windows and select Pixel 5 from the dimensions drop-down menu at the top of the page.
+7. For the best user experience, press `fn+F12` on your keyboard for macOS or `F12` for Windows and select Pixel 5 from the dimensions drop-down menu at the top of the page.
+
+## Heroku Deployment
+[Click here to view the application hosted on Heroku](https://peaceful-garden-49879.herokuapp.com/)
+
+For the best user experience, press `fn+F12` on your keyboard for macOS or `F12` for Windows and select Pixel 5 from the dimensions drop-down menu at the top of the page.
+
+PLEASE NOTE: The image uploads for this application were designed to utilize local storage and will not work on the Heroku hosted instance. 
 
 ## Built With
 - React

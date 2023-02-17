@@ -7,7 +7,7 @@ router.get('/subtypes/:type', (req, res) => {
   let type = req.params.type;
   let subtypesQuery = `SELECT DISTINCT "subtype" FROM "animal" WHERE "type" = $1;`;
   pool.query(subtypesQuery, [type]).then((result) => {
-    console.log('RESULT HERE:', result);
+    // console.log('RESULT HERE:', result);
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error getting subtypes:', error);
@@ -20,7 +20,7 @@ router.get('/families/:type', (req, res) => {
   let subtype = req.params.type;
   let familiesQuery = `SELECT DISTINCT "family" FROM "animal" WHERE "subtype" = $1;`;
   pool.query(familiesQuery, [subtype]).then((result) => {
-    console.log('RESULT HERE:', result);
+    // console.log('RESULT HERE:', result);
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error getting subtypes:', error);
@@ -33,7 +33,7 @@ router.get('/species/:type', (req, res) => {
   let family = req.params.type;
   let speciesQuery = `SELECT DISTINCT "name" FROM "animal" WHERE "family" = $1;`;
   pool.query(speciesQuery, [family]).then((result) => {
-    console.log('RESULT HERE:', result);
+    // console.log('RESULT HERE:', result);
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error getting subtypes:', error);
@@ -46,7 +46,7 @@ router.get('/selected/:name', (req, res) => {
   let species = req.params.name;
   let speciesQuery = `SELECT * FROM "animal" WHERE "name" = $1;`;
   pool.query(speciesQuery, [species]).then((result) => {
-    console.log('RESULT HERE:', result);
+    // console.log('RESULT HERE:', result);
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error getting animal data:', error);
@@ -58,7 +58,7 @@ router.get('/selected/:name', (req, res) => {
 router.get('/all', (req, res) => {
   const speciesQuery = `SELECT "name" FROM "animal" ORDER BY "name" ASC;`;
   pool.query(speciesQuery).then((result) => {
-    console.log('RESULT HERE:', result);
+    // console.log('RESULT HERE:', result);
     res.send(result.rows);
   }).catch((error) => {
     console.log('Error getting subtypes:', error);
