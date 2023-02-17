@@ -23,8 +23,8 @@ function* fetchUser() {
 
 function* setProfile(action) {
   try {
-    console.log('User Saga UPDATE PROFILE');
-    console.log('data being sent:', action.payload.profile_image);
+    // console.log('User Saga UPDATE PROFILE');
+    // console.log('data being sent:', action.payload.profile_image);
     yield axios.put(`/api/user/${action.payload.id}`, {profile_image: action.payload.profile_image});
     yield put({ type: 'FETCH_USER' });
   } catch (error) {

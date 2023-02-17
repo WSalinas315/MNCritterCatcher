@@ -5,7 +5,7 @@ import axios from 'axios';
 function* fetchAnimalList(action) {
   try {
     const animals = yield axios.get(`/api/search/all`);
-    console.log('animalList SAGA results:', animals);
+    // console.log('animalList SAGA results:', animals);
     yield put({ type: 'SET_SEARCH_LIST', payload: animals.data });
   } catch (error) {
     console.log('GET animalList for autocomplete search error:', error);
